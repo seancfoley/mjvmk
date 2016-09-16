@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="ps">
+      <UniqueIdentifier>{4f02d683-2310-4b83-a2f7-ff53e43adce2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ps\x86">
+      <UniqueIdentifier>{858f078a-49d9-434f-93b2-2ea9fa50fb6b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ps\win32">
+      <UniqueIdentifier>{15dd7561-f460-4a91-8da7-ea43f08436d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="types">
+      <UniqueIdentifier>{ffe7a0a0-ed90-4235-9c65-2c160eaf2f82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="thread">
+      <UniqueIdentifier>{da3c8888-13fa-4f52-aeae-26254b320373}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="memory">
+      <UniqueIdentifier>{64bc97d4-e535-4ec2-826d-d3a4556fdcae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="operate">
+      <UniqueIdentifier>{16a9e5b0-451d-4062-8203-ae6980cb8437}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\ps\x86\psConfig.c">
+      <Filter>ps\x86</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ps\x86\psIo.c">
+      <Filter>ps\x86</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ps\x86\psTime.c">
+      <Filter>ps\x86</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ps\win32\psConfig.c">
+      <Filter>ps\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ps\win32\psIo.c">
+      <Filter>ps\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ps\win32\psTime.c">
+      <Filter>ps\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="src\types\linkedList.c">
+      <Filter>types</Filter>
+    </ClCompile>
+    <ClCompile Include="src\thread\contextSwitch.c">
+      <Filter>thread</Filter>
+    </ClCompile>
+    <ClCompile Include="src\thread\schedule.c">
+      <Filter>thread</Filter>
+    </ClCompile>
+    <ClCompile Include="src\thread\thread.c">
+      <Filter>thread</Filter>
+    </ClCompile>
+    <ClCompile Include="src\thread\timer.c">
+      <Filter>thread</Filter>
+    </ClCompile>
+    <ClCompile Include="src\memory\garbageCollect.c">
+      <Filter>memory</Filter>
+    </ClCompile>
+    <ClCompile Include="src\memory\memoryAlloc.c">
+      <Filter>memory</Filter>
+    </ClCompile>
+    <ClCompile Include="src\operate\log.c">
+      <Filter>operate</Filter>
+    </ClCompile>
+    <ClCompile Include="src\operate\operate.c">
+      <Filter>operate</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\ps\x86\psParameters.h">
+      <Filter>ps\x86</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ps\x86\psPlatform.h">
+      <Filter>ps\x86</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ps\win32\psParameters.h">
+      <Filter>ps\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ps\win32\psPlatform.h">
+      <Filter>ps\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ps\psConfig.h">
+      <Filter>ps</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ps\psIo.h">
+      <Filter>ps</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ps\psTime.h">
+      <Filter>ps</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ps\psTypes.h">
+      <Filter>ps</Filter>
+    </ClInclude>
+    <ClInclude Include="src\types\config.h">
+      <Filter>types</Filter>
+    </ClInclude>
+    <ClInclude Include="src\types\linkedList.h">
+      <Filter>types</Filter>
+    </ClInclude>
+    <ClInclude Include="src\thread\contextSwitch.h">
+      <Filter>thread</Filter>
+    </ClInclude>
+    <ClInclude Include="src\thread\schedule.h">
+      <Filter>thread</Filter>
+    </ClInclude>
+    <ClInclude Include="src\thread\thread.h">
+      <Filter>thread</Filter>
+    </ClInclude>
+    <ClInclude Include="src\thread\timer.h">
+      <Filter>thread</Filter>
+    </ClInclude>
+    <ClInclude Include="src\memory\garbageCollect.h">
+      <Filter>memory</Filter>
+    </ClInclude>
+    <ClInclude Include="src\memory\heap.h">
+      <Filter>memory</Filter>
+    </ClInclude>
+    <ClInclude Include="src\memory\memoryAlloc.h">
+      <Filter>memory</Filter>
+    </ClInclude>
+    <ClInclude Include="src\operate\log.h">
+      <Filter>operate</Filter>
+    </ClInclude>
+    <ClInclude Include="src\operate\operate.h">
+      <Filter>operate</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\ps\x86\psBoot.asm">
+      <Filter>ps\x86</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\ps\x86\psCpu.asm">
+      <Filter>ps\x86</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\ps\x86\psEntry.asm">
+      <Filter>ps\x86</Filter>
+    </CustomBuild>
+  </ItemGroup>
+</Project>

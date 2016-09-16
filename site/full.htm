@@ -1,0 +1,698 @@
+<html>
+<title>MAVOS - Micro JVM Operating System</title>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8" />
+<META NAME="TITLE" CONTENT="MAVOS - Micro JVM Operating System">
+<link rel="stylesheet" type="text/css" href="fullStyle.css" title="master">
+
+
+<body bgcolor=#ffffff topmargin=0 leftmargin=0 marginwidth=0 marginheight=0>
+
+<div id=content>
+
+
+<span class=text1><p>
+Mavos Micro JVM Operating System
+</span></p>
+
+<p><span class=text2>
+Preemptive Real-time O/S
+</span></p>
+<span class=text>
+<p>
+Mavos is a lightweight multi-tasking real-time micro operating system for embedded platforms.  Mavos has an optional add-on which is a java micro-edition CLDC virtual machine.  Built with a synthesis of some of the most popular trends in operating system software today, Mavos is a multi-faceted system with a very small footprint and low power consumption.
+</p>
+
+<span class=text2><p>
+Benefits
+</p></span><p>
+The Mavos operating system possesses the performance, small size and responsiveness comparable to any real-time system on the market today, while the java virtual machine gives the system the flexibility that a full-fledged java development environment provides.  Any combination of native and java applications can be executed by the system, allowing system-critical tasks to be written in native code if required, running seamlessly with generically written java-based tasks.
+</p><p>
+By bringing java to your embedded system you open up the system to the multitudes of java programmers in the world today.  It allows the programming to be altered seamlessly after shipment of the product by developers unaware of the intricacies and specific attributes of the system.  It allows java programs written for one device to be seamlessly used on another.
+</p><p>
+A device's tasks could be altered on a daily basis by the owner, new tasks could be added, older programs updated, and the programming easily changed through the use of the JVM.  This brings a new level of flexibility to numerous embedded systems such as mobile phones, home appliances, automated teller machines, scientific instruments and other devices.
+</p><p>
+At the same time, you do not needlessly surrender the device programming to the nuances of the java programming language that might not suit system-critical, performance intensive or device-specific tasks.  The kernel is a full-fledged high performance kernel capable of running native applications configured exactly as required.  The system task synchronization, task priority control, CPU time share control, memory management, and all other features are compact, efficient, and flexible.
+</p>
+
+<span class=text2><p>
+Characteristics
+</p></span>
+
+<p>
+The Mavos operating system is small, efficient and fully self contained.  It can be ported to any number of embedded or wireless systems and deliver performance and real-time responsiveness to a multitude of devices.
+</p>
+
+<p>
+The operating system possesses a dual-purpose heap, one that allows for explicit memory release as well as exact garbage collection.  Semaphores provide mutual exlusion and synchronization.  Monitors with conditional variables provide for mutual exclusion, synchronization, and wait lists with notification and timeouts.  Priority-based scheduling and weighted time-sharing allow for explicit control of processor use and interrupt handling.  The kernel is flexibly designed for the addition of required interrupt drivers.  Threads/tasks may be run at 64 different priorities, with any number of threads running at a specific priority, and with tasks at specific priorities garnering a configurable and variable amount of CPU time with respect to the other tasks at the same priority.
+</p>
+<span class=text2><p>
+Java Capability
+</p></span><p>
+With the CLDC java virtual machine, Mavos is all that is required to run java byte-code on your embedded microprocessor, since the operating system provides all the support required for the java language, such as the java threading model and garbage collection.  The JVM is fine-tuned for embedded platforms by providing such features as a process model (multiple applications in the same virtual machine with entirely separate memory spaces), java stacks that are optionally fixed-length or growable, romizing support and numerous performance optimizations.
+</p>
+<span class=text2>
+<p>
+Several Possible Configurations
+</p></span>
+<p>
+Even when running the java virtual machine, tasks running on the O/S may run inside the kernel,  entirely separate from the virtual machine, making use of the kernel's API for synchronization, thread management, memory management and other functions.  Alternatively, applications may be written in java, making use of the CLDC API and any additional profiles such as MIDP.  The two application models may be mixed as desired for optimal use of the platform's resources.
+</p>
+<p>
+<br>
+<img src=config.jpg>
+</p>
+<p>
+<center><b>A typical full system configuration</b></center>
+</p>
+<span class=text>
+<p>
+The JVM has an additional built-in scheduler that allows it to run on top of an existing operating system much like a standard JVM.  This can be especially useful for debugging purposes.
+</p>
+<p>
+</span>
+</span>
+
+<a name="OSSize"/>
+<span class=text2>
+Small Size
+</span></p><span class=text>
+<p>
+The system has been designed to be extremely compact. 
+</p><p>
+The system has been ported to the protected mode of the Intel x86 compatible group of processors and tested on PCs running the AMD-K6-2 processor and the Intel Pentium processor.  The total size of this build with all OS and VM features listed in the description and specification can be broken down as follows:<br><br>
+Operating system internals (boot-up, initialization, kernel, heap, other): 45 KB<br>
+CLDC VM internals: 80 KB<br>
+CLDC VM class files (non-compressed): 99 KB<br>
+<b>Total size: 224 KB</b><br><br>
+Removing unwanted features can further reduce the size of such a build.
+</p>
+
+<span class=text2><p>
+Requirements for a Port
+</p></span><p>
+Mavos is written in highly portable ANSI C.  All processor-specific source code listed below is grouped to make porting as straightforward as possible.  No external libraries are required, not even the standard C library.  
+</p><p>
+The interface to the java CLDC virtual machine is written in java and can be compiled with any standard java compiler, such as Sun's JDK compiler.
+</p><p>
+A port of the system requires:<br><br>
+&#149; A C compiler that generates reentrant code - code that can be executed by more than one task/thread without fear of corruption<br>
+&#149; Interrupts can be explicitly enabled and disabled<br>
+&#149; The processor has a clock tick interrupt that occurs at regular intervals<br>
+&#149; The processor supports a hardware stack that can accommodate numerous stack frames<br>
+&#149; The processor has instructions that allow for loading and storing the stack pointer and other thread-specific CPU registers<br>
+</p>
+
+
+<p>
+The following limited amount of code must be written to complete a port to a specific processor:<br><br>
+&#149; Any platform specific initialization<br>
+&#149; Configuring the tick interrupt and the tick rate<br>
+&#149; A register swap function for thread switches<br>
+&#149; The java standard output and standard error streams (optional but recommended)<br>
+</p>
+<p>
+For the x86 protected mode port, the above consisted of:<br><br>
+&#149; An x86 boot-loader<br>
+&#149; About 300 lines of code for CPU initialization which included enabling address line 20, starting the protected mode, initializing the heap and stack, and initializing the interrupt table<br>
+&#149; About 100 additional lines of code for the streams, clock tick and context switching, comprising approximately 4 percent of the compiled operating system<br>
+</p><span class=text2><p>
+Availability
+</p></span><p>
+This system is available to embedded and wireless device manufacturers on a licensing basis.  The source code is available and the system can be provided with no royalties.  Folsena may be retained on a development, support or consulting basis to port the system to a specific processor.
+</p>
+
+
+
+
+
+<span class=text>
+<span class=text1><p>
+Mavos Detailed Specifications
+</span></p>
+<p><span class=text2>
+Java Support
+</span></p>
+
+<p>
+&#149; Full support for the CLDC virtual machine and class librairies<br>
+&#149; Complete adherence to the java virtual machine specification<br>
+&#149; Exception, Error, and Throwable handling is also fully supported, including "finally" clauses<br>
+&#149; Floating point support is optional, depending upon the processor's floating point capabilities<br>
+&#149; The built-in native method support can be extended to third-party applications in a platform-specific manner<br>
+</p><span class=text2><p>
+Advanced Process Model
+</p></span><p>
+An advanced process and threading model allows for complete separation of groups of threads into distinct memory spaces.  All resources allocated by an application are released when all threads of the application have terminated or have been forcibly terminated.  Such resources include the class table, string tables and static memory.  Static intializers are separately run for a class regardless of whether it has already been loaded by a separate application, and there are no shared event-handling threads, or sharing resources of any sort.  This allows the VM to remain active indefinitely without the continuous growth in memory required by most conventional java virtual machines.  It also allows the system to terminate an application immediately without corruption of the system as a whole.
+</p>
+
+<span class=text2><p>
+Java Thread Stacks
+</p></span><p>
+Java thread stacks can be configured to be of fixed length or growable, whichever is optimal for the platform.  Growable stacks require larger stack frames and stack-checking.
+</p>
+
+<span class=text2><p>
+Garbage Collection
+</p></span><p>
+The garbage collector is a high-performance, exact, mark and sweep collector.  The collector can be configured to run in its own thread concurrently with other threads (with priority and CPU time share specified), or whenever the processor is idle.  In both configurations the garbage collector will additionally step in seamlessly when there is a shortage of free memory.
+</p>
+
+<span class=text2><p>
+JVM Performance Optimizations
+</p></span><p>
+&#149; numerous bytecodes are substituted by faster counterparts as the byte-code is executed - invokestatic, invokeinterface, invokevirtual, invokespecial, return, ireturn, areturn, lreturn, getstatic, putstatic, getfield, putfield, instanceof, checkcast, new, newarray, anewarray, multianewarray<br>
+&#149; several commonly used methods are substituted by bytecode counterparts the first time each such method is called, these include commonly used java.lang.String methods, java.lang.Math methods and java.util.Vector methods<br>
+&#149; the constant pool of each class, stored in memory when the class is loaded, is further resolved when each constant pool entry is first accessed<br>
+&#149; each class that implements an interface has interface implementation tables that make for fast interface method lookup<br>
+&#149; each loaded class and its associated structures can be stored in a single contiguous block of memory<br>
+&#149; virtual method arrays make for fast virtual method lookup<br>
+&#149; separation of primitive data types from object references provide faster garbage collection<br>
+&#149; java registers (program counter, stack pointer, frame pointer and local variable pointer) are configurable as global variables, local variables inside the instruction loop, or machine registers, whichever is optimal for the platform<br>
+&#149; direct threading and token threading platform-specific optimizations are optional
+<br>
+
+</p>
+
+
+</span>
+
+
+<span class=text>
+<br>
+<br>
+
+
+<a name=expand>
+
+<span class=text2><p>
+Expansion of JVM for Further Optimization
+</p></span><p>
+Common methods of JVM expansion for platform-specific performance improvement have been accounted for in the design.
+</p><span class=text3><p>
+Hardware Acceleration
+</p></span><p>
+A processor whose native instructions mirror java instructions may execute some of the java bytecode directly.  Supported hardware instructions can be transferred from the JVM software instruction loop to the hardware by a processor specific mechanism.  In the reverse direction, the processor may jump to the kernel's JVM instruction handlers for bytecode instructions supported by software.
+</p><span class=text3><p>
+Just-in-Time Compilers (JIT)
+</p></span><p>
+Bundling in a native compiler with the JVM can enable JIT support.  In a manner similar to hardware acceleration, byte code execution can be transferred between the compiled code and the built-in interpreter.
+</p>
+
+<span class=text2><p>
+Driver Development and O/S Peripherals
+</p></span><p>
+
+Any number of drivers may be added to the kernel in a straightforward manner, allowing for the specific and diverse requirements of an embedded or wireless system.  High performance and responsiveness of the JVM can be obtained due to the tight coupling of the JVM with the kernel.  In particular, java I/O classes can be primarily written in either native or java code.  This allows for flexible and high-performance support of a J2ME profile such as MIDP or DoJa.
+</p>
+
+<span class=text2><p>
+Romizing
+</p></span><p>
+
+Support for romizing is built-in, so that the base java class libraries (as well as any other self-contained java packages) can be romized, allowing for fast start-up times and reduced RAM requirements.
+
+</p>
+
+
+
+
+
+
+
+
+<span class=text>
+
+
+
+
+
+<span class=text1><p>Thread States and Transitions in Mavos</p></span>
+
+<span class=text2><P>Thread states</P></span>
+<p>
+&#149; Asleep<br>
+&#149; Asleep on a particular monitor<br>
+&#149; Waiting to enter a monitor<br>
+&#149; Pending a semaphore that is unavailable<br>
+&#149; Waiting for another thread to die<br>
+&#149; Running<br>
+</p>
+
+<span class=text2><P>Thread state transition table</P></span>
+<p>Describes how a thread may cross from one state (the "from" rows) to another state (the "to" columns)</p>
+
+<TABLE BORDER=0 CELLSPACING=2 CELLPADDING=3>
+<TR><TD WIDTH=97 VALIGN="TOP" bgcolor=#dddddd><span class="tableText2Dark">
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;To:</P>
+
+<P>&nbsp;</P>
+<P>From:</P></span></TD>
+<TD WIDTH=97 VALIGN="TOP" bgcolor=#d3d9de>
+<span class="tableText3">Asleep</span></TD>
+<TD WIDTH=97 VALIGN="TOP" bgcolor=#d3d9de>
+<span class="tableText3">Asleep on a particular monitor</span></TD>
+<TD WIDTH=97 VALIGN="TOP" bgcolor=#d3d9de>
+<span class="tableText3">Waiting to enter a monitor</span></TD>
+<TD WIDTH=97 VALIGN="TOP" bgcolor=#d3d9de>
+<span class="tableText3">Pending a semaphore that is unavailable</span></TD>
+<TD WIDTH=97 VALIGN="TOP" bgcolor=#d3d9de>
+<span class="tableText3">Waiting for another thread to die</span></TD>
+<TD WIDTH=97 VALIGN="TOP" bgcolor=#d3d9de>
+<span class="tableText3">Running</span></TD>
+</TR>
+<TR><TD VALIGN="TOP" bgcolor=#d3d9de>
+<span class="tableText3">Asleep</span></TD>
+<TD VALIGN="TOP" bgcolor=#eeeeee>&nbsp;</TD>
+<TD VALIGN="TOP" bgcolor=#eeeeee>&nbsp;</TD>
+<TD VALIGN="TOP" bgcolor=#eeeeee>&nbsp;</TD>
+<TD VALIGN="TOP" bgcolor=#eeeeee>&nbsp;</TD>
+<TD VALIGN="TOP" bgcolor=#eeeeee>&nbsp;</TD>
+<TD VALIGN="TOP" bgcolor=#dce8f3>
+<span class="tableText4"><FONT COLOR="#008040">interrupted,</FONT><FONT COLOR="#800000"> </FONT><FONT COLOR="#ff0000">timer expiry</FONT></span></TD>
+</TR>
+<TR><TD VALIGN="TOP" bgcolor=#d3d9de>
+<span class="tableText3">Asleep on a particular monitor</span></TD>
+<TD VALIGN="TOP" bgcolor=#eeeeee>&nbsp;</TD>
+<TD VALIGN="TOP" bgcolor=#eeeeee>&nbsp;</TD>
+<TD VALIGN="TOP" bgcolor=#dce8f3>
+<span class="tableText4"><FONT COLOR="#008040">notified,
+interrupted,</FONT>
+<FONT COLOR="#ff0000">timer expiry</FONT></span></TD>
+<TD VALIGN="TOP" bgcolor=#eeeeee>&nbsp;</TD>
+<TD VALIGN="TOP" bgcolor=#eeeeee>&nbsp;</TD>
+<TD VALIGN="TOP" bgcolor=#eeeeee>&nbsp;</TD>
+</TR>
+<TR><TD WIDTH="11%" VALIGN="TOP" bgcolor=#d3d9de>
+<span class="tableText3">Waiting to enter a monitor</span></TD>
+<TD VALIGN="TOP" bgcolor=#eeeeee>&nbsp;</TD>
+<TD VALIGN="TOP" bgcolor=#eeeeee>&nbsp;</TD>
+<TD VALIGN="TOP" bgcolor=#eeeeee>&nbsp;</TD>
+<TD VALIGN="TOP" bgcolor=#eeeeee>&nbsp;</TD>
+<TD VALIGN="TOP" bgcolor=#eeeeee>&nbsp;</TD>
+<TD VALIGN="TOP" bgcolor=#dce8f3>
+<span class="tableText4"><FONT COLOR="#008040">secondary thread's monitor exit</FONT></span></TD>
+</TR>
+<TR><TD WIDTH="11%" VALIGN="TOP" bgcolor=#d3d9de>
+<span class="tableText3">Pending a semaphore that is unavailable</span></TD>
+<TD VALIGN="TOP" bgcolor=#eeeeee>&nbsp;</TD>
+<TD VALIGN="TOP" bgcolor=#eeeeee>&nbsp;</TD>
+<TD VALIGN="TOP" bgcolor=#eeeeee>&nbsp;</TD>
+<TD VALIGN="TOP" bgcolor=#eeeeee>&nbsp;</TD>
+<TD VALIGN="TOP" bgcolor=#eeeeee>&nbsp;</TD>
+<TD VALIGN="TOP" bgcolor=#dce8f3>
+<span class="tableText4"><FONT COLOR="#008040">secondary thread's semaphore post</FONT></span></TD>
+</TR>
+<TR><TD VALIGN="TOP" bgcolor=#d3d9de>
+<span class="tableText3">Waiting for another thread to die</span></TD>
+<TD VALIGN="TOP" bgcolor=#eeeeee>&nbsp;</TD>
+<TD VALIGN="TOP" bgcolor=#eeeeee>&nbsp;</TD>
+<TD VALIGN="TOP" bgcolor=#eeeeee>&nbsp;</TD>
+<TD VALIGN="TOP" bgcolor=#eeeeee>&nbsp;</TD>
+<TD VALIGN="TOP" bgcolor=#eeeeee>&nbsp;</TD>
+<TD VALIGN="TOP" bgcolor=#dce8f3>
+<span class="tableText4"><FONT COLOR="#008040">interrupted,
+secondary thread's death has occurred</FONT></span></TD>
+</TR>
+<TR><TD VALIGN="TOP" bgcolor=#d3d9de>
+<span class="tableText3">Running</span></TD>
+<TD VALIGN="TOP" bgcolor=#dce8f3>
+<span class="tableText4"><FONT COLOR="#0000ff">sleep</FONT></span></TD>
+<TD VALIGN="TOP" bgcolor=#dce8f3>
+<span class="tableText4"><FONT COLOR="#0000ff">monitor wait, monitor wait with timeout</FONT></span></TD>
+<TD VALIGN="TOP" bgcolor=#dce8f3>
+<span class="tableText4"><FONT COLOR="#0000ff">monitor entry</FONT></span></TD>
+<TD VALIGN="TOP" bgcolor=#dce8f3>
+<span class="tableText4"><FONT COLOR="#0000ff">semaphore pend</FONT></span></TD>
+<TD VALIGN="TOP" bgcolor=#dce8f3>
+<span class="tableText4"><FONT COLOR="#0000ff">wait for other thread's death</FONT></span></TD>
+<TD VALIGN="TOP" bgcolor=#eeeeee>&nbsp;</TD>
+</TR>
+</TABLE>
+
+
+</span>
+
+
+<br>
+<br>
+<span class=text>
+
+<P><b>Legend:</b></P>
+<p>
+
+
+</span>
+<table border=0 rows=1 cols=1>
+<tr><td bgcolor="#dce8f3">
+
+
+<span class="tableText4">
+<FONT COLOR="#0000ff">&#149; Thread state transition caused by thread itself<br></FONT>
+<FONT COLOR="#008040">&#149; Thread state transition caused by secondary thread<br></FONT>
+<FONT COLOR="#ff0000">&#149; Thread state transition caused by timer<br></FONT>
+</span>
+
+</td></tr></table>
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+
+
+
+
+<span class=text>
+
+<span class=text1>
+Mavos Real-time Specifications
+</span>
+<span class=text2>
+<p>
+Non-interruptible system operations
+</span>
+<p>
+<span class=text3>
+All operations that temporarily disable interrupts
+<p>
+</span>
+
+
+<table cols=2 border=0 cellpadding=3 cellspacing=2>
+
+<tr><td bgcolor=#687886 width=185><span class="tableText2">Subsystem</span></td>
+<td bgcolor=#687886 width=400><span class="tableText2">Operation</span></td>
+
+<tr><td rowspan=17 bgcolor=#d3d9de><span class="tableText3"><br>O/S operations<p></span></td>
+<td bgcolor=#ffffff><span class="tableText4">Switch context from tick ISR</span></td></tr>
+
+<tr><td bgcolor=#e0e0e0><span class="tableText4">Check timer queue from idle thread or tick ISR</span></td></tr>
+
+<tr><td bgcolor=#ffffff><span class="tableText4">Set a thread's priority and switch context if necessary</span></td></tr>
+
+<tr><td bgcolor=#e0e0e0><span class="tableText4">Schedule a newly created thread</span></td></tr>
+
+<tr><td bgcolor=#ffffff><span class="tableText4">Wait on monitor and switch context</span></td></tr>
+
+<tr><td bgcolor=#e0e0e0><span class="tableText4">Notify one thread waiting on monitor and switch context if necessary</span></td></tr>
+
+<tr><td bgcolor=#ffffff><span class="tableText4">Notify all threads waiting on monitor and switch context if necessary</span></td></tr>
+
+<tr><td bgcolor=#e0e0e0><span class="tableText4">Put current thread to sleep and switch context</span></td></tr>
+
+<tr><td bgcolor=#ffffff><span class="tableText4">Make current thread yield to other threads of higher priority by switching context if necessary</span></td></tr>
+
+<tr><td bgcolor=#ffffff><span class="tableText4">Make current thread yield to other threads of equal or higher priority by switching context if necessary</span></td></tr>
+
+<tr><td bgcolor=#e0e0e0><span class="tableText4">Join current thread to other thread and switch context</span></td></tr>
+
+<tr><td bgcolor=#ffffff><span class="tableText4">Remove current thread from scheduler and switch context</span></td></tr>
+
+<tr><td bgcolor=#e0e0e0><span class="tableText4">Interrupt thread and switch context if necessary</span></td></tr>
+
+<tr><td bgcolor=#ffffff><span class="tableText4">Enter monitor, switching context if monitor is blocked</span></td></tr>
+
+<tr><td bgcolor=#e0e0e0><span class="tableText4">Exit monitor and switch context if necessary</span></td></tr>
+
+<tr><td bgcolor=#ffffff><span class="tableText4">Semaphore pend</span></td></tr>
+
+<tr><td bgcolor=#e0e0e0><span class="tableText4">Semaphore post</span></td></tr>
+
+
+<tr><td rowspan=14 bgcolor=#d3d9de><span class="tableText3"><br>JVM operations<p></span></td>
+<td bgcolor=#ffffff><span class="tableText4">Add string to UTF8 string table</span></td></tr>
+
+<tr><td bgcolor=#e0e0e0><span class="tableText4">Add string to unicode string table</span></td></tr>
+
+<tr><td bgcolor=#ffffff><span class="tableText4">Reserve entry in class table for new class</span></td></tr>
+
+<tr><td bgcolor=#e0e0e0><span class="tableText4">Set error status of class and subclasses in class table</span></td></tr>
+
+<tr><td bgcolor=#ffffff><span class="tableText4">Add class load structure to class table entry</span></td></tr>
+
+<tr><td bgcolor=#e0e0e0><span class="tableText4">Add class instance structure to class table entry</span></td></tr>
+
+<tr><td bgcolor=#ffffff><span class="tableText4">Resolution of constant pool class, field, method or interface method entry when first accessed</span></td></tr>
+
+<tr><td bgcolor=#e0e0e0><span class="tableText4">Read opcode to be replaced with faster counterpart (primarily invoke and field operations)</span></td></tr>
+
+<tr><td bgcolor=#ffffff><span class="tableText4">Replace opcode with faster counterpart (primarily invoke and field operations)</span></td></tr>
+
+<tr><td bgcolor=#e0e0e0><span class="tableText4">Get active java threads for garbage collection purposes</span></td></tr>
+
+<tr><td bgcolor=#ffffff><span class="tableText4">Java thread creation</span></td></tr>
+
+<tr><td bgcolor=#e0e0e0><span class="tableText4">Java thread death</span></td></tr>
+
+<tr><td bgcolor=#ffffff><span class="tableText4">Disable current java threads for garbage collection purposes</span></td></tr>
+
+<tr><td bgcolor=#e0e0e0><span class="tableText4">Reenable current java threads for garbage collection purposes</span></td></tr>
+
+
+</table>
+
+
+</span>
+
+
+
+
+
+<br>
+<br>
+<a name=interrupt>
+<span class=text>
+
+<span class=text2>
+<p>
+<br>
+Real-time specifications
+<p>
+</span>
+<span class=text3>
+Instruction counts for the primary operations during which interrupts are disabled, for the intel x86 family of processors
+<p>
+</span>
+
+<table border=0 cellpadding=5>
+
+<tr><td bgcolor=#687886 width=140><span class="tableText2">Operation</span></td>
+<td bgcolor=#687886 width=185 colspan=2><span class="tableText2">x86 Instruction Count</span></td>
+
+
+<tr><td colspan=3 bgcolor=#d3d9de><span class="tableText1"><br><b>O/S operations</b><br><p></span></td></tr>
+
+
+<tr><td bgcolor=#d3d9de width=140><span class="tableText4">Start thread</span></td>
+<td bgcolor=#e0e0e0 width=185 colspan=2><span class="tableText4">
+From 50 to 53
+</span></td>
+
+
+
+<tr><td bgcolor=#d3d9de width=140><span class="tableText4">Thread death
+<p>x is the number of threads joined to the dying thread</span></td>
+<td bgcolor=#e0e0e0 width=185 colspan=2><span class="tableText4">
+<br>
+From 123 + 51x<br>
+To 137 + 54x
+</span></td>
+</tr>
+
+
+<tr><td bgcolor=#d3d9de width=140><span class="tableText3">Context Switching
+</span></td>
+<td bgcolor=#d3d9de width=185><span class="tableText3">
+No context switch occurs</span></td>
+<td bgcolor=#d3d9de width=185><span class="tableText3">
+Context switch occurs</span></td></tr>
+
+<tr><td bgcolor=#d3d9de width=140><span class="tableText4">Switch context, when:
+<p>
+- entering a monitor already entered<br>
+- pending a semaphore that is unavailable<br>
+- sleeping for a specified time<br>
+- yielding to threads of equal or higher priority<br>
+</span></td>
+<td bgcolor=#e0e0e0><span class="tableText4">Not applicable</span></td>
+<td bgcolor=#e0e0e0 width=185><span class="tableText4">43
+</span></td>
+</tr>
+
+<tr><td bgcolor=#d3d9de width=140><span class="tableText4">Switch context if a higher priority thread is ready to run, when:<p>
+- exiting a monitor that has threads waiting to enter<br>
+- posting a semaphore that has threads pending the semaphore<br>
+- resetting a thread's priority<br>
+- interrupting a sleeping thread<br>
+- notifying a monitor<br>
+- yielding to higher priority threads<br>
+</span></td>
+<td bgcolor=#e0e0e0 width=185><span class="tableText4">
+15</span></td>
+<td bgcolor=#e0e0e0 width=185><span class="tableText4">
+55</span></td></tr>
+
+<tr><td bgcolor=#d3d9de width=140><span class="tableText4">Switch context only if necessary, at the end of an interrupt, if a higher priority thread is ready to run</span></td>
+<td bgcolor=#e0e0e0 width=185><span class="tableText4">
+32</span></td>
+<td bgcolor=#e0e0e0 width=185><span class="tableText4">
+69</span></td></tr>
+
+
+
+<tr><td bgcolor=#d3d9de width=140><span class="tableText4">Switch context as scheduled due to a clock tick</span></td>
+<td bgcolor=#e0e0e0 width=185><span class="tableText4">
+49
+</span></td>
+<td bgcolor=#e0e0e0 width=185><span class="tableText4">
+82
+</span></td></tr>
+ 
+
+
+
+<tr><td bgcolor=#d3d9de width=140><span class="tableText4">Switch context only if necessary, at the end of an interrupt, if a higher priority thread is ready to run, while awakening threads<p>
+x is the number of awakened sleeping threads, y is the number of threads awakened from waiting on a monitor</span></td>
+<td bgcolor=#e0e0e0 width=185><span class="tableText4">
+From 47 + 81x + 67y<br>
+To 72 + 94x + 104y
+</span></td>
+<td bgcolor=#e0e0e0 width=185><span class="tableText4">
+From 86 + 81x + 67y<br>
+To 111 + 94x + 104y
+
+</span></td></tr>
+
+
+
+
+<tr><td bgcolor=#d3d9de width=140><span class="tableText4">Switch context as scheduled due to a clock tick, while awakening threads<p>
+x is the number of awakened sleeping threads, y is the number of threads awakened from waiting on a monitor</span></td>
+<td bgcolor=#e0e0e0 width=185><span class="tableText4">
+From 64 + 81x + 67y<br>
+To 89 + 94x + 104y
+</span></td>
+<td bgcolor=#e0e0e0 width=185><span class="tableText4">
+From 97 + 81x + 67y<br>
+To 122 + 94x + 104y
+</span></td></tr>
+
+
+
+
+
+
+<tr><td colspan=3 bgcolor=#d3d9de><span class="tableText1"><b><br>JVM-specific operations<br></b><p></span></td></tr>
+ 
+
+
+<tr><td bgcolor=#d3d9de width=140><span class="tableText4">Add string to UTF8 string table</span></td>
+<td bgcolor=#e0e0e0 width=185 colspan=2><span class="tableText4">17</span></td>
+</tr>
+
+
+<tr><td bgcolor=#d3d9de width=140><span class="tableText4">Add string to unicode string table</span></td>
+<td bgcolor=#e0e0e0 width=185 colspan=2><span class="tableText4">6</span></td>
+</tr>
+
+
+<tr><td bgcolor=#d3d9de width=140><span class="tableText4">Reserve entry in class table for new class
+<p>x is the number of contiguous occupied class table slots scanned
+</span></td>
+</span></td>
+<td bgcolor=#e0e0e0 width=185 colspan=2><span class="tableText4">
+<br>
+48 + 20x
+</tr>
+
+
+<tr><td bgcolor=#d3d9de width=140><span class="tableText4">Add unprepared class load structure to class table entry</span></td>
+<td bgcolor=#e0e0e0 width=185 colspan=2><span class="tableText4">4</span></td>
+</tr>
+
+
+<tr><td bgcolor=#d3d9de width=140><span class="tableText4">Add prepared class load structure to class table entry</span></td>
+<td bgcolor=#e0e0e0 width=185 colspan=2><span class="tableText4">7</span></td>
+</tr>
+
+
+<tr><td bgcolor=#d3d9de width=140><span class="tableText4">Add class instance structure to class table, if not done when class load structure added</span></td>
+<td bgcolor=#e0e0e0 width=185 colspan=2><span class="tableText4">3</span></td>
+</tr>
+
+
+<tr><td bgcolor=#d3d9de width=140><span class="tableText4">Resolution of constant pool class entry when first accessed</span></td>
+<td bgcolor=#e0e0e0 width=185 colspan=2><span class="tableText4">7</span></td>
+</tr>
+
+
+<tr><td bgcolor=#d3d9de width=140><span class="tableText4">Resolution of constant pool field entry when first accessed</span></td>
+<td bgcolor=#e0e0e0 width=185 colspan=2><span class="tableText4">8</span></td>
+</tr>
+
+
+<tr><td bgcolor=#d3d9de width=140><span class="tableText4">Resolution of constant pool method entry when first accessed</span></td>
+<td bgcolor=#e0e0e0 width=185 colspan=2><span class="tableText4">9</span></td>
+</tr>
+
+
+<tr><td bgcolor=#d3d9de width=140><span class="tableText4">Resolution of constant pool interface method entry when first accessed</span></td>
+<td bgcolor=#e0e0e0 width=185 colspan=2><span class="tableText4">8</span></td>
+</tr>
+
+
+<tr><td bgcolor=#d3d9de width=140><span class="tableText4">Read java instruction that can be replaced with faster counterpart before replacement</span></td>
+<td bgcolor=#e0e0e0 width=185 colspan=2><span class="tableText4">5</span></td>
+</tr>
+
+
+<tr><td bgcolor=#d3d9de width=140><span class="tableText4">Replace java instruction with faster counterpart</span></td>
+<td bgcolor=#e0e0e0 width=185 colspan=2><span class="tableText4">2 byte instruction 4,<br>
+3 byte instruction 8,<br>
+5 byte instrution 22</span></td>
+</tr>
+
+
+</table>
+
+
+
+
+
+</span>
+
+
+
+
+
+
+
+
+<a name=appmgr>
+<span class=text1><p>
+Mam J2ME Application Manager 
+</p></span><p>
+Mam is the Mavos J2ME application manager provided as an add-on to the Mavos java virtual machine to help complete a full system configuration.
+</p><p>
+Provides a compact user interface to the Mavos micro operating system through the use of the MIDP profile. Fully written in Java, allows for a quick and simple launch of a full implementation of the Mavos given a platform specific profile written for a specific device and its drivers.  
+</p>
+<p>
+<br>
+<img src=appmgr.jpg>
+</p>
+<p>
+<center><b>A typical application manager configuration</b></center>
+</p>
+<p>
+Easily adaptable to use another J2ME profile other than MIDP, such as Docomo's DoJa, the application manager possesses a simple but intuitive interface that is all that is required to launch and control java applications on the embedded platform.
+</p>
+<p>&nbsp;</p>
+</span>
+
+
+
+</div>
+
+</body>
+</html>
+
+

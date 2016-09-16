@@ -1,0 +1,21 @@
+demo1:
+Test.java
+psBoot.bin
+demo1.bin
+debugCmd.bat
+debugCmdIn.txt
+
+demo2:
+unlinkedStaticClassFiles.c
+psEntry.obj
+psBoot.bin
+lib.lib
+ExeToBin.exe
+encode.exe
+demo.dsw
+demo.dsp
+debugCmd.bat
+debugCmdIn.txt
+listing.txt
+empty Release directory
+

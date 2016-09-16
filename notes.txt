@@ -1,0 +1,635 @@
+NAME:
+
+The Micro Java Virtual Machine Kernel
+
+MJK or MJVMK or MJ2MEVMK
+
+
+SEPARATE BUILDS
+
+- each build will have a different configuration, there are 3: x86, win32 debug, win 32 release
+- the configuration must point to the right include directory and must have the unused set of ps C files excluded from 
+the build
+- later I can maybe separate into separate projects?  maybe, maybe not
+- later will separate vm build from os build and os build from ps build
+- instances of PREEMPTIVE in which I am really separating builds (particularly where I have differing implementations of the same function) to be removed, instead will separate into separate files, also move stuff in config.h to the ps files as required.  instances of PREEMPTIVE in which I am actually doing locking should be repaced by PREMPTIVE_THREADS or KERNEL_THREADS or something like that...  this will possibly (hopefully) be only outside of the ps stuff
+- the romizer must be altered to be built on top of ONLY the win32 build
+
+FEATURES
+-easily romizable
+-interruptible, can functions as a microprocessor kernel
+-preemptive!!
+-all throwables are catchable, unlike the KVM
+-multi-process - when a process terminates, its class table, string pool, and all other 
+ resources are released
+-instructions can be moved to hardware easily, by placing java registers in hardware registers (or even
+ making them the same) and by putting the java pc value into the ip.  Non-supported byte codes can trap 
+ back to the MJVMK instruction loop.   
+-Even field access and method invokes can be moved to hardware - invokes and field access use only integer indices
+ to locate methods and fields in tables, no other logic is required (TODO with the possible exception of invoke interface - I should institute my invoke lookup algorithm below as an option).
+-easy to port, need only unsigned 32 bit integer support.
+-quickening and constant pool resolution is fast (but also configurable for romizing)
+-quickening is superior to limited cache in KVM.
+- use of indices to find methods, fields, interfaces and classes in quickening allows for the
+ easy implementation of quickened instructions in microcode.  There is no looping and few if-else
+ constructs to implement.
+-classes are allocated in a contiguous block of memory
+-static fields and monitors are separated from other class structures
+-constant pool and byte code can be optionally separated from other class structures  for easily customizable romizing,
+ it is best these elements are located in RAM to take advantage of quickening and constant pool
+ runtime resolution
+-small footprint
+-java stack growth is optional (frames are just 3 pointers wide if no growth set, 5 otherwise)
+-garbage collection is incremental and does not interfere with real-time capabilities
+
+CONFIGURATIONS:
+1 non-preemptive VM on top of OS (like KVM)
+2 preemptive VM/kernel with only java apps - drivers are either partially or fully implemented in java
+3 preemptive kernel/VM with C apps integrated into the kernel and external java apps
+   eg phone access is a C program integrated into the kernel, the phone also downloads midlets
+
+- preemptive kernel/VM can be integrated with hardware java instruction handlers
+- java apps can be multi-process or standard JVM processes
+- if C native apps are used as part of the kernel's suite of apps, then all the useful kernel elements of
+the java VM are available to the native apps, such as monitors for synchronization, file system access,
+memory management and garbage collection, time management - delaying threads and timeouts, interrupt enabled threads, thread scheduling, etc... 
+
+
+
+
+PROCESS characteristics:
+- static fields are separate
+- static blocks and static initializers are separately run
+- java.lang.Class objects are separate
+- java.lang.Class object monitors are separate, so class synchronization is separate
+- no shared event handling threads or shared threads of any other sort
+- complete release of all resources and memory upon process termination, including class tables and string pools
+
+HARDWARE SUPPORT
+- supports native pc and java pc
+- when java pc hits supported byte code, it transfers java pc to the native pc
+
+RETURN TO SOFTWARE
+- when native hits unsupported byte code, it traps out (and software/hardware relocates it to java pc while native pc points to trap code)
+- trap will be the interpreter loop function, which holds registers as locals
+- when the trap function begins, it initializes the locals registers from outside (from registers or globals)
+- KEEP the register macros for access, because there may still be cases where the java registers are actually stored in hardware registers, not locals, so they will appear outside as globals
+
+CLASS MEMORY:
+
+- if allocation of def and instance are separate, special care must be taken to ensure that
+the def is deallocated as required.
+
+
+GARBAGE COLLECTION
+
+
+
+- There is no "garbage collection" thread.  Garbage collections are triggered by memory allocations (in which certain thresholds are checked, and if not met, a gc is started), and the idle thread which does garbage collection whenever there is gc to be done (be careful, keeping idle thread in gc function would lock out all others).
+- when entering the garbage collection, the function requires for operation:
+ # the sp of the current thread is required as a parameter
+ # the sp of all other threads is available from ?? the globally available thread structures ??.
+//TODO: primary problem in preemptive case is access to the local variable frame registers from other threads
+//MAYBE COULD USE THE STACK SEGMENTS!!
+
+- the gc also enters a monitor upon entrance (for obvious reasons this globally available gc monitor is allocated at startup).  The tick ISR can trigger thread switches, and if there is enough memory free for the switched in thread, the thread will continue until it switches out or the next tick.  Otherwise, it ends up blocked on the gc monitor.
+- note that natives can also entet garbage collection
+
+XX need to figure out a gc algorithm that will free up as it goes along and does not require a full cycle.
+XX could use a 32 bit int to indicate which of the 32 possible threads reference an object for thread ref counting
+and maybe a back pointer in each object to indicate its original location(s)  
+
+NATIVES
+
+- native need access to the registers.  So if they are local, they must be passed along somehow.
+
+
+
+QUICKENING
+
+
+invoke quickening: 
+static: need method index and class index (64:1024 128:512 256:256 512:128)
+virtual: need method index and and way of getting at object (method will differ) (use 256:256, 1024:64 method index and argument count)
+special: need method index and class index - same as static (64:1024 128:512 256:256 512:128)
+interface: need method index, interface index  (65536 65536 0 - 16:16:8)
+native: static and special can have the same native quicken - 16 bit native index
+-total of 11 - all above are for non-sync, non-native
+- to start off, we will only do 256:256
+
+
+THREAD SYNCHRO AND INTERRUPTS
+
+-must disable interrupts when altering the class structure (not the class instance though) such 
+as when quickening and when resolving the constant pool.
+Thus:
+-if a constant pool entry is not resolved, interrupts must be disabled before even reading its
+values, because some other thread might jump and alter the constant pool values midway through reading or
+handling them.
+-when handling byte codes than can be quickened, interrupts must be disabled, after which the
+ instruction and all its arguments must be read, before interrupts can be enabled again.
+ Otherwise, some other thread might jump in and alter the byte codes midway through reading them.
+
+CONSTANT POOL RES
+- split out the class res from the field res
+- in field res, first res the class (in the macro), and do not enter the field res func if the class has not 
+been init, instead return an error code
+- do same for methods
+- this way, class res is always done once, the first time requested.  Method/field res is only done once, as soon as 
+the class is init.
+
+
+
+	
+CLINIT
+
+- use of fake frame will allow for easy and quick test to see if the method is internal - possible internal
+methods include clinit, init and main.  otherwise, a sequential test against each of these name-types
+would be required.
+- when tracing through the stack for an exception, the fake frame must not be passed.  The throw function/macro
+ must check for this, and if it is hit, it must map the exception to a new exception 
+ and rethrow from the correct stack location in most cases, but this behaviour is optional (in the case of a mian method, maybe 
+ do something different?  Probably easier for app manager to do the same thing
+ - when returning from a method the check must be made for the internal frame - BUT could avoid this
+ if the reclaimed PC is a special PC corresponding to the internal frame!
+ Clinit frame: contains special PC corresponding to internal frame 
+ Second internal frame: contains PC pointing to location of original byte code (static invoke, static field access, new)
+- execution loop case to handle the special PC - Need a way to check if we arrived there due to throwable or due to return -
+ this could be stored in the stack frame of the special frame - probably best if any exception is simply pushed in the operand stack
+ th same way an exception is always pushed on the operand stack when a handler is found.  If all internal methods return nothing
+ (which is probably the case) then simply checking the stack pointer is enough to test for an uncaught exception.
+ Otherwise a special boolean local variable could be used.
+ - could go without this new special opcode, but then would need a special iterative name-type check in every popframe, both
+ in exception throwing and all return instructions.
+ - another possible idea for the new frame - could have a 'finally' exception handler in the fake method in the framestruct
+ that would catch all exceptions.  This handler would have a pc that points to the special byte code.
+
+INTERFACE LOOKUP:
+/* 
+ * Problem: we have a set of positive integers representing the indices of interfaces in the
+ * global interface table.  For a given class, we wish to map these indices to an array of integers that
+ * starts with 0 and has the shortest possible length.  This will be done using four integers: left-shift, right-shift, split and divider.
+ *
+ * Let the interface indices be x1, x2, ...., xn.
+ *
+ * leftShift is x1.
+ * If xi and xj are closest together, then split is xi
+ * If xk and xl are second closest, then divider is xk - xl
+ * Let y = (divider - (xj - xi)) - leftShift
+ * right shift is y - ((xj + y) % divider) where ((xj + y) % divider) is the positive modulus
+ *
+ * The following algorithm is then used to map the interface index i1 to its
+ * index i2 within the class file:
+ * if i1 <= split, then i2 = (i1 - leftShift)/divider
+ * else i2 = (i1 + rightShift)/divider
+ *
+ * eg indices are 13, 25, 26, 32, 54
+ * leftshift is 13
+ * closest are 25, 26
+ * second closest are 26, 32
+ * split is 25
+ * divider is 32 - 26 = 6
+ * y is  6 - (26 - 25) - 13 = -8
+ * rightShift is -8 - ((26 - 8) % 6) = -8 - 0 = -8
+ *
+ * Mappings:
+ * (xj - 13)/6 for first two indices less than or equal to split 24,
+ * and (xj - 8)/6 for the other three indices 
+ * We get 0, 2, 3, 4, 7.
+ *
+ * IF the indices are 13, 24, 25, 31, 54 then leftShift is 13 and rightShift is -13 giving
+ * 0, 1, 2, 3, 6
+ */
+
+typedef struct interfaceMethodLookupStruct {
+    UINT8 leftShift;
+    UINT8 split;
+    INT8 rightShift;
+    UINT8 divider;
+} interfaceMethodLookupStruct;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CLASS TABLE
+
+There will be a system class table with the basic classes in it but no class instances.
+
+When a process dies, all of its class instances are deleted.  Deletion of the class defs via reference count?
+
+Can also explore the concept of using garbage collection on classes to avoid duplicate loading of
+classes while solving the problem of not deleting commonly used classes when a process ends.
+Of course, class instances are never duplicated.
+
+
+
+
+Garbage colleaction ideas:
+- process model aids in collection: collection of class table, string table, and all objects
+- real time garbage collection: reference counting used so that when objects are popped off 
+ the stack all locals (and recursively all of their fields) are checked for collection by the
+ same thread popping the frame:
+ 1. decrement all reference counts
+ 2. if a count is zero, decrement its fields reference counts and then collect it
+ 3. For each field, return to 1
+- greying collection is used in addition for comprehensiveness
+- think about difference between locals and parameters for this teachnique...
+
+
+
+
+TYPE CHECK
+
+The following type check has less code but is probably less quick than the standard algorithm.
+It is smaller because the target is tested for object right away. But the target will rarely be
+Object:
+- checkcast for Object?  What compiler would do this?
+- instanceof for Object?  What programmer would do this?
+- target is array with element class Object so Object is checked after first loop iteration
+- System.arraycopy or other indirect use of this function (don't think there is one) other than instanceof or checkcast
+
+/* see instanceof or checkcast in VM spec for the algorithm description */
+BOOLEAN isInstanceOf(COMMON_CLASS_DEF pTargetClassDef, COMMON_CLASS_DEF pSourceClassDef)
+{
+    do {
+        /* nothing to do if they are the same class or interface */
+        if(pTargetClassDef == pSourceClassDef) {
+            return TRUE;
+        }
+        /* Object is the super class of everything */
+        if(pTargetClassDef == getClassDefFromClassInstance(javaLangObject)) {
+            return TRUE;
+        }
+
+        if(!isArrayClass(pSourceClassDef)) {
+            //LOADED_CLASS_DEF pSourceLoadedClassDef = getLoadedClassDef(pSourceClassDef);
+            
+           
+            if(isInterface(pSourceClassDef) || isInterface(pTargetClassDef)) /* source is interface */
+            {
+                /* if source is an interface, target must be a superinterface since we've already checked if it's java.lang.Object */
+                /* if target is an interface, then source must be an interface or object that implements target */
+                return isSuperInterface(pTargetClassDef, pSourceClassDef);
+            }
+            return isParentClass(pTargetClassDef, pSourceClassDef);
+        }
+        
+        /* source is an array */
+        if(!isArrayClass(pTargetClassDef) 
+              /* the target must be either Object, Cloneable or Serializable.
+               * But we've already checked if the target is Object,
+               * while Cloneable and Serializable are not in CLDC
+               */
+
+            || isPrimitiveArrayClass(pSourceClassDef) || isPrimitiveArrayClass(pTargetClassDef)
+              /* we must have the same primitive array class,
+               * but we've already checked  if we have the same class
+               */
+            ) {
+            return FALSE;
+        }
+        
+        /* two non-primitive array classes */
+        pTargetClassDef = getElementClass(getArrayClassDef(pTargetClassDef));
+        pSourceClassDef = getElementClass(getArrayClassDef(pSourceClassDef));
+
+    } while(TRUE);
+}
+
+
+
+
+
+
+CLASS PERMISSIONS from one class to another are checked:
+- newInstance method
+- resolving a class reference in the constant pool during runtime (not class load time)
+- during loading, access to super class and super interfaces is checked
+
+CLASS PERMISSIONS to the member of another class is checked:
+- newInstance method on init
+- resolving a field or method reference in the constant pool during runtime (not class load time)
+
+
+
+
+
+
+WHEN INITIALIZATION OCCURS
+-getstatic, putstatic, invokestatic, new
+-initialize the class of main method before invoking main on startup
+-initialize the primary classes on startup (Object, String, ...)
+- super class is initialized before a child class is
+- Class.forName
+- that's it!
+
+REQUIREMENTS FOR CLASS INSTANCE, CLASS DEF, CLASS TABLE
+
+- need to be able to get class instance from the object instance it contains
+- need the constant pool to point to something that is permanent.
+- need the constant pool to point to something from which the class def is quickly available
+- need to be able to get to the class def from the class instance
+
+  class table:  pointer to instance, pointer to def
+  constant pool: pointer to entry in class table
+classInstanceStruct {
+    CLASS_ENTRY pClassEntry;
+    objectInstanceStruct instance;
+};
+
+  Constant pool:
+    When the class is loaded, the CLASS_ENTRY switches to the CLASS_INSTANCE
+    class table remains the same
+    cannot switch to the CLASS_DEF because we need to access the static fields and monitor
+    for things like synchronized invokes and getstatic's.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* TODO note that when not using interrupt thread thread switches, the
+       failure to acquire the monitor in the following will result in a switch of all our
+       java registers after having moved the current thread to the monitor's blocked list.
+       The current thread will re-execute the current instruction after it is woken by some
+       other thread releasing the monitor.
+       
+        In the case of interruptible thread switches, the native registers will be swapped
+        in the middle of the acquire monitor function and when it is woken up it will resume
+        in the exact same place.
+
+        Also note, as an aside, that internal monitor acquisitions (such as in class loading)
+        are entirely disabled when not using interrupt thread switches (since the locks are 
+        not needed when you can be sure that you will finish the task).  
+
+        The above two scenarios illustrate how thread switching and synchro differ between the
+        two interrupt and non-interrupt scenarios.
+    */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+the simple old shift functions
+
+
+jlong jlongShiftLeft(jlong value, jint shift)
+{
+    jint actualShift = shift & 0x3f;
+
+    
+    while(actualShift > 0) {
+        value.high <<= 1;
+        if(value.low & 0x8000) {
+            value.high |= 0x0001;
+        }
+        else {
+            value.high &= 0xfffe;
+        }
+        value.low <<= 1;
+        actualShift--;
+    }
+
+    return value;
+}
+
+jlong jlongShiftRight(jlong value, jint shift)
+{
+    jint actualShift = shift & 0x3f;
+
+    while(actualShift > 0) {
+        value.low >>= 1;
+        if(value.high & 0x01) {
+            value.low |= 0x8000;
+        }
+        else {
+            value.low &= 0x7fff;
+        }
+        value.high = ((INT32) value.high) >> 1;
+        actualShift--;
+    }
+    return value;
+}
+
+jlong jlongUnsignedShiftRight(jlong value, jint shift)
+{
+    jint actualShift = shift & 0x3f;
+
+    while(actualShift > 0) {
+        value.low >>= 1;
+        if(value.high & 0x01) {
+            value.low |= 0x8000;
+        }
+        else {
+            value.low &= 0x7fff;
+        }
+        value.high >>= 1;
+        actualShift--;
+    }
+    return value;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+we are getting a failure here because the parameter to the method is a primitive
+                            and the object field is non-zero because it was never set to zero
+
+                            we need to use the new parameter maps in the method structure to determine whether
+                            parameters are meant to be objects.
+                            For the other variables (locals and op stack) we need to decide what to do.
+                            there are 2 options.
+                            we can either double the framestruct size so that only objects appear in the same
+                            half of every frame cell, and have the gc look at only object cells while clearing the 
+                            rest (those in the framestruct and the parameters).
+                            or we can initialize the locals (already done) and opstack to zero.  for the parameters
+                            we use the parameter map as mentioned above.
+                            I think I like the second.
+                            The first method is not necessarily exact unless we also clear the locals and opstack.
+                            AN object may be sitting in a local entry or an opstack entry even though it is only there
+                            from a previous method invoke.  THe gc cannot tell whether it should be there without the
+                            stack maps.  The gc can clear the objects appearing in cells correspoding to the frame struct,
+                            and in parameter cells which hold primitives.  But it is possible an object from a previous
+                            invoke can remain indefinitely in a local or opstack spot indefinitely (more often than
+                            not it wouldn't, but the times it does could have a big impact considering that anything that
+                            object is connected to cannot be collected.  I cannot claim the gc is exact in this case.  
+                            THink this over,
+                            I'm not thinking clearly so it might not be all kosher.  If we are happy with this, then
+                            the disadvantage is the increased stack size, the advantage is avoiding having to zero the
+                            locals and opstack during pushing or popping.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Catherine Delaney
+Helene Haughney
+
+Critical regions
+
+
+
+
+
+
+
+psTime.c handleTick do a context switch from tick ISR
+stringPool.c getUTF8StringByChars adding string to UTF8 string table
+stringPool.c internString adding string to unicode string table
+ don't need stringPool.c addGlobalUTF8String adding global string to UTF8 string table
+table.c getClassInTableGeneric reserving entry in class table
+iterativeLoad.c setChildStatus setting error status of child class in class table
+iterativeLoad.c updateClassTable adding class structure to class table
+prepare.c preparationUpdateClassTable adding class instance to class table, if not done at loading time
+resolve.c resolveConstantPoolClassRef resolution of constant pool class entry when first accessed
+resolve.c resolveConstantPoolFieldRef resolution of constant pool field entry when first accessed
+resolve.c resolveConstantPoolMethodRef resolution of constant pool method entry when first accessed
+resolve.c resolveConstantPoolInterfaceMethodRef resolution of constant pool interface method entry when first accessed
+psIo.c psPutCharScreen output character to screen ?? change this maybe although it is currently only platform specific
+frameRegisters.h atomicInstructionRead read all byte of an instruction without interrupt (so the code stream cannot be altered while reading it)
+frameRegisters.h atomicInstructionSetXXX quicken an instruction
+schedule.c setPriority set a thread's priority and switch context if necessary
+schedule.c scheduleNewThread let scheduler know of new thread
+schedule.c monitorWait wait and context switch
+schedule.c monitorNotify notify and context switch if necessary
+schedule.c monitorNotifyAll notify all and context switch if necessary
+schedule.c threadSleep sleep and context switch
+schedule.c threadYield yield and context switch if necessary
+schedule.c threadJoin join and context switch
+schedule.c removeThread remove thread from scheduler and switch context
+schedule.c interruptThread interrupt thread and switch context if necessary
+schedule.h monitorExit exit monitor and context switch if necessary
+schedule.h monitorEnter enter monitor and context switch if monitor blocked
+specialHandlers.c check the timer queue
+javaThread.c gcGetActiveThreadList get active threads for gc
+javaThread.c scheduleNewJavaThread let java subsystem know of new java thread
+javaThread.c removeJavaThread remove java thread from java subsystem
+javaThread.c disableNonCurrentJavaThreads disable threads for gc
+javaThread.c reenableNonCurrentJavaThreads reenable threads previously disabled
+
+
+
+API
+
+initialization
+
+SUCCESS_CODE initializeIdleStack(void (*pReturnAddress)());
+SUCCESS_CODE becomeIdleThread(void (*pReturnAddress)());
+SUCCESS_CODE initializeOS(); (initializes heap, CPU: sets context switch interrupt, logging)
+void startTick(): sets tick interrupt
+
+threads
+
+#define initializeThreadStruct(pInitThread, switchOutFunc, switchInFunc, cleanUpFunc, priority)
+SUCCESS_CODE initializeNativeStack(PS_STACK_PARAMS pThreadParameters, void (*pTask)(), PS_STACK_ELEMENT *ppStack);
+void cleanUpNativeStack(THREAD pThread);
+#define getCurrentThread()
+SUCCESS_CODE startNativeThread(void (*pTask)(), void (*pSwitchOut)(THREAD), void (*pSwitchIn)(THREAD), MONITOR pMonitor, UINT8 priority, THREAD *ppThread);
+
+
+scheduler
+
+void scheduleNewThread(THREAD pNewThread, MONITOR pMonitor);
+void removeThread();
+void interruptThread(THREAD pThread);
+UINT32 getActiveThreadCount();
+void setPriority(THREAD pThread, UINT8 priority);
+void threadSleep(ELAPSED_TIME pTimeOut);
+void threadJoin(THREAD pThreadToJoin);
+void weakYield();
+void strongYield();
+void disableRescheduler();
+void enableRescheduler();
+#define monitorInit(pMonitor)
+#define monitorEnter(pMonitor)
+#define monitorExit(pMonitor)
+void monitorWait(MONITOR pMonitor, ELAPSED_TIME pTimeOut);
+void monitorNotify(MONITOR pMonitor);
+void monitorNotifyAll(MONITOR pMonitor);
+#define semaphoreInit(pSemaphore, initialValue)
+void semaphorePost(SEMAPHORE pSemaphore);
+void semaphorePend(SEMAPHORE pSemaphore);
+
+memory
+
+void *memoryAlloc(UINT32 numBytes);
+void *memoryCalloc(UINT32 numBytes, UINT32 size);
+void memoryFree(void *pMem);
+SUCCESS_CODE collectibleMemoryAlloc(UINT32 byteSize, UINT32 blockMask, UINT16 numContainedItems, UINT32 locationByteOffset, void **ppLocation);
+SUCCESS_CODE memoryCallocMonitor(MONITOR *ppMonitor);
+UINT32 getTotalAvailableMemory();
+UINT32 getTotalMemory();
+
+
+
+

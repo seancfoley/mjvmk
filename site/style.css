@@ -1,0 +1,84 @@
+p.margin5 {margin: 5px 5px 5px 5px;}
+p.margin10 {margin: 10px 10px 10px 10px;}
+
+#logo {visibility: visible;padding: 0px;border-width: 0px;border-style: none;margin: 0px;position: absolute;width: 170px;top: 30px;left: 0px; z-index: 10;}
+
+#behind {visibility: visible;padding: 0px;border-width: 0px;border-style: none;margin: 0px;position: absolute;width: 822px;top: 0px;left: 0px; z-index: 4;}
+
+#content {visibility: visible;padding: 0px;border-width: 0px;border-style: none;margin: 0px;position: absolute;width: 550px;top: 50px;left: 0px; z-index: 6;}
+
+/* if extending the page length, increase the top below by the required number of pixels */
+
+#leftNavBar {visibility: visible;padding: 0px;border-width: 0px;border-style: none;margin: 0px;position: absolute;width: 200px;top: 760px;left: 0px; z-index: 8;}
+
+#leftNavBarHome {visibility: visible;padding: 0px;border-width: 0px;border-style: none;margin: 0px;position: absolute;width: 200px;top: 590px;left: 0px; z-index: 8;}
+
+#leftNavBarProducts {visibility: visible;padding: 0px;border-width: 0px;border-style: none;margin: 0px;position: absolute;width: 200px;top: 2900px;left: 0px; z-index: 8;}
+
+#leftNavBarRT {visibility: visible;padding: 0px;border-width: 0px;border-style: none;margin: 0px;position: absolute;width: 200px;top: 1200px;left: 0px; z-index: 8;}
+
+#leftNavBarSpecs {visibility: visible;padding: 0px;border-width: 0px;border-style: none;margin: 0px;position: absolute;width: 200px;top: 905px;left: 0px; z-index: 8;}
+
+#leftNavBarContact {visibility: visible;padding: 0px;border-width: 0px;border-style: none;margin: 0px;position: absolute;width: 200px;top: 460px;left: 0px; z-index: 8;}
+
+#leftNavBarTsTable {visibility: visible;padding: 0px;border-width: 0px;border-style: none;margin: 0px;position: absolute;width: 200px;top: 680px;left: 0px; z-index: 8;}
+
+#leftNavBarDownload {visibility: visible;padding: 0px;border-width: 0px;border-style: none;margin: 0px;position: absolute;width: 200px;top: 1080px;left: 0px; z-index: 8;}
+
+
+
+.titleText {color: #000000; font-size: 18px; font-weight: bold; font-family: Arial, Helvetica, helvetica, Geneva, sans-serif; text-decoration: none;}
+
+.copyright {color: #000000; font-size: 10px; font-weight: normal; font-family: Verdana, Arial, Helvetica, helvetica, Geneva, sans-serif; text-decoration: none;}
+
+.sideBar1 {color: #000000; font-size: 12px; font-weight: normal; font-family: Verdana, Arial, Helvetica, helvetica, Geneva, sans-serif; text-decoration: none;}
+
+
+.tableText2 {color: #ffffff; font-size: 14px; font-weight: bold; font-family: Verdana, arial, Helvetica, Geneva, sans-serif; text-decoration: none;}
+
+.tableText2Dark {color: #000000; font-size: 14px; font-weight: bold; font-family: Verdana, arial, Helvetica, Geneva, sans-serif; text-decoration: none;}
+
+.tableText3 {color: #000000; font-size: 11px; font-weight: bold; font-family: Verdana, Arial, Helvetica, helvetica, Geneva, sans-serif; text-decoration: none;}
+
+.tableText4 {color: #000000; font-size: 11px; font-weight: normal; font-family: Verdana, arial, Helvetica, Geneva, sans-serif; text-decoration : none;}
+
+
+.featuresTextTitle {color: #ffffff; font-size: 18px; font-weight: bold; font-family: Verdana, Arial, Helvetica, Geneva, sans-serif; text-decoration: none;}
+
+.featuresText1 {color: #000000; font-size: 12px; font-weight: normal; font-family: Verdana, Arial, Helvetica, helvetica, Geneva, sans-serif; text-decoration: none;}
+
+.featuresText2 {color: #ffffff; font-size: 14px; font-weight: bold; font-family: Verdana, arial, Helvetica, Geneva, sans-serif; text-decoration: none;}
+
+.featuresText3 {color: #000000; font-size: 11px; font-weight: normal; font-family: Verdana, arial, Helvetica, Geneva, sans-serif; text-decoration : none;}
+
+.featuresText3Emphasized {color: #000000; font-size: 11px; font-weight: bold; font-family: Verdana, arial, Helvetica, Geneva, sans-serif; text-decoration : none;}
+
+.featuresBottom {color: #000000; font-size: 2px; font-weight: bold; font-family: Verdana, arial, Helvetica, Geneva, sans-serif; text-decoration: none;}
+
+
+
+.text {color: #000000; font-size: 12px; font-weight: normal; font-family: Arial, Helvetica, helvetica, Geneva, sans-serif; text-decoration: none;}
+
+.text1 {color: #000000; font-size: 22px; font-weight: bold; font-family: Verdana, Arial, Helvetica, helvetica, Geneva, sans-serif; text-decoration: none;}
+
+.text2 {color: #000000; font-size: 18px; font-weight: normal; font-family: Verdana, Arial, Helvetica, helvetica, Geneva, sans-serif; text-decoration: none;}
+
+.text3 {color: #000000; font-size: 14px; font-weight: normal; font-family: Verdana, Arial, Helvetica, helvetica, Geneva, sans-serif; text-decoration: none;}
+
+.text4 {color: #000000; font-size: 12px; font-weight: normal; font-family: Verdana, Arial, Helvetica, helvetica, Geneva, sans-serif; text-decoration: none;}
+
+.text5 {color: #000000; font-size: 11px; font-weight: normal; font-family: Verdana, Arial, Helvetica, helvetica, Geneva, sans-serif; text-decoration: none;}
+
+.text6 {color: #000000; font-size: 10px; font-weight: normal; font-family: Verdana, Arial, Helvetica, helvetica, Geneva, sans-serif; text-decoration: none;}
+
+.computerText {color: #000000; font-size: 12px; font-weight: normal; font-family: Courier, Arial, Helvetica, helvetica, Geneva, sans-serif; text-decoration: none;}
+
+
+.BULLET {color: #786b36; font-size: 9px; font-weight: normal; font-family: Verdana, arial, Helvetica, Geneva, sans-serif; text-decoration: none;}
+
+.BULLET A {color: #786b36; font-size: 9px; font-weight: bold; font-family: Verdana, arial, Helvetica, Geneva, sans-serif; text-decoration: none;}
+
+.BULLET A:hover {color: #baaf5f;}
+
+
+

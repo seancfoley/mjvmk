@@ -1,0 +1,339 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="elements">
+      <UniqueIdentifier>{b3a5069f-7cc3-401a-979c-2c83f7468254}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="elements\x86">
+      <UniqueIdentifier>{fbf1e468-c12d-43be-8fbf-9a085d6d4b58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="elements\win32">
+      <UniqueIdentifier>{08f47ee1-6c59-4d97-9dd1-0d79e9e64f34}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="elements\win32Romize">
+      <UniqueIdentifier>{87381c50-9fb4-4b81-bc54-f52f5c450253}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="interpret">
+      <UniqueIdentifier>{06cc5752-81e8-4611-abac-10a1164a9296}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="javaThread">
+      <UniqueIdentifier>{0bae7956-8405-4076-bf6c-c2f0a6d52462}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="object">
+      <UniqueIdentifier>{a126afcb-72de-4e92-a1bf-8f42f458ead6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="string">
+      <UniqueIdentifier>{311e6697-527d-43af-b489-487be2184b15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="log">
+      <UniqueIdentifier>{3f47ba9c-4a8c-4c9d-87c1-330c0312a49a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="frame">
+      <UniqueIdentifier>{327becb3-6e91-465b-a45f-89c2923c0e16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="class">
+      <UniqueIdentifier>{9028dfb4-7760-4c7b-bc72-9b91f7f98bb8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="resolution">
+      <UniqueIdentifier>{c97f968a-27af-4818-a191-b7df155a37b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="resolution\file">
+      <UniqueIdentifier>{bbc471fb-8d23-4e6e-8aa2-0e5ee97f0d75}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="resolution\load">
+      <UniqueIdentifier>{b5189b90-283f-49b4-b2d4-94b9af194dfa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="resolution\resolve">
+      <UniqueIdentifier>{1e82ce93-1ed2-4900-aea7-bc7701dab3a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="execute">
+      <UniqueIdentifier>{8fe04f47-6701-46a0-8519-63797964a15e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="execute\handlers">
+      <UniqueIdentifier>{2fedf9ab-90d3-429b-ab49-2302afa2da85}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="natives">
+      <UniqueIdentifier>{55eecde0-7d01-4f7e-9ad2-2cf7ae002334}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="run">
+      <UniqueIdentifier>{3dc896e1-96c0-4a23-a93e-6a77dd7f1ce9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\elements\x86\psJavaParameters.h">
+      <Filter>elements\x86</Filter>
+    </ClInclude>
+    <ClInclude Include="src\elements\win32\psJavaParameters.h">
+      <Filter>elements\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="src\elements\win32Romize\psJavaParameters.h">
+      <Filter>elements\win32Romize</Filter>
+    </ClInclude>
+    <ClInclude Include="src\elements\base.h">
+      <Filter>elements</Filter>
+    </ClInclude>
+    <ClInclude Include="src\elements\javaParameters.h">
+      <Filter>elements</Filter>
+    </ClInclude>
+    <ClInclude Include="src\elements\keys.h">
+      <Filter>elements</Filter>
+    </ClInclude>
+    <ClInclude Include="src\elements\members.h">
+      <Filter>elements</Filter>
+    </ClInclude>
+    <ClInclude Include="src\elements\types.h">
+      <Filter>elements</Filter>
+    </ClInclude>
+    <ClInclude Include="src\interpret\instructions.h">
+      <Filter>interpret</Filter>
+    </ClInclude>
+    <ClInclude Include="src\interpret\javaGlobals.h">
+      <Filter>interpret</Filter>
+    </ClInclude>
+    <ClInclude Include="src\interpret\returnCodes.h">
+      <Filter>interpret</Filter>
+    </ClInclude>
+    <ClInclude Include="src\javaThread\javaThread.h">
+      <Filter>javaThread</Filter>
+    </ClInclude>
+    <ClInclude Include="src\object\allocate.h">
+      <Filter>object</Filter>
+    </ClInclude>
+    <ClInclude Include="src\object\instantiate.h">
+      <Filter>object</Filter>
+    </ClInclude>
+    <ClInclude Include="src\string\javaString.h">
+      <Filter>string</Filter>
+    </ClInclude>
+    <ClInclude Include="src\string\stringKeys.h">
+      <Filter>string</Filter>
+    </ClInclude>
+    <ClInclude Include="src\string\stringPool.h">
+      <Filter>string</Filter>
+    </ClInclude>
+    <ClInclude Include="src\log\logClass.h">
+      <Filter>log</Filter>
+    </ClInclude>
+    <ClInclude Include="src\log\logItem.h">
+      <Filter>log</Filter>
+    </ClInclude>
+    <ClInclude Include="src\frame\stackSegment.h">
+      <Filter>frame</Filter>
+    </ClInclude>
+    <ClInclude Include="src\frame\throw.h">
+      <Filter>frame</Filter>
+    </ClInclude>
+    <ClInclude Include="src\class\nativeTable.h">
+      <Filter>class</Filter>
+    </ClInclude>
+    <ClInclude Include="src\class\table.h">
+      <Filter>class</Filter>
+    </ClInclude>
+    <ClInclude Include="src\class\typeCheck.h">
+      <Filter>class</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resolution\file\fileAccess.h">
+      <Filter>resolution\file</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resolution\file\fileSystemClassFile.h">
+      <Filter>resolution\file</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resolution\file\memClassFile.h">
+      <Filter>resolution\file</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resolution\file\staticClassFiles.h">
+      <Filter>resolution\file</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resolution\file\unlinkedStaticClassFiles.h">
+      <Filter>resolution\file</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resolution\load\construct.h">
+      <Filter>resolution\load</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resolution\load\initializeLoader.h">
+      <Filter>resolution\load</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resolution\load\iterativeLoad.h">
+      <Filter>resolution\load</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resolution\load\load.h">
+      <Filter>resolution\load</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resolution\load\preload.h">
+      <Filter>resolution\load</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resolution\load\prepare.h">
+      <Filter>resolution\load</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resolution\resolve\lookup.h">
+      <Filter>resolution\resolve</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resolution\resolve\resolve.h">
+      <Filter>resolution\resolve</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resolution\constantPool.h">
+      <Filter>resolution</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resolution\createThrowable.h">
+      <Filter>resolution</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resolution\resource.h">
+      <Filter>resolution</Filter>
+    </ClInclude>
+    <ClInclude Include="src\execute\handlers\handlers.h">
+      <Filter>execute\handlers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\execute\execute.h">
+      <Filter>execute</Filter>
+    </ClInclude>
+    <ClInclude Include="src\execute\frameRegisters.h">
+      <Filter>execute</Filter>
+    </ClInclude>
+    <ClInclude Include="src\execute\javaRegisterSwitch.h">
+      <Filter>execute</Filter>
+    </ClInclude>
+    <ClInclude Include="src\natives\initializeNatives.h">
+      <Filter>natives</Filter>
+    </ClInclude>
+    <ClInclude Include="src\natives\natives.h">
+      <Filter>natives</Filter>
+    </ClInclude>
+    <ClInclude Include="src\run\run.h">
+      <Filter>run</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\elements\types.c">
+      <Filter>elements</Filter>
+    </ClCompile>
+    <ClCompile Include="src\interpret\javaGlobals.c">
+      <Filter>interpret</Filter>
+    </ClCompile>
+    <ClCompile Include="src\javaThread\javaThread.c">
+      <Filter>javaThread</Filter>
+    </ClCompile>
+    <ClCompile Include="src\object\allocate.c">
+      <Filter>object</Filter>
+    </ClCompile>
+    <ClCompile Include="src\object\instantiate.c">
+      <Filter>object</Filter>
+    </ClCompile>
+    <ClCompile Include="src\string\javaString.c">
+      <Filter>string</Filter>
+    </ClCompile>
+    <ClCompile Include="src\string\stringKeys.c">
+      <Filter>string</Filter>
+    </ClCompile>
+    <ClCompile Include="src\string\stringPool.c">
+      <Filter>string</Filter>
+    </ClCompile>
+    <ClCompile Include="src\log\logClass.c">
+      <Filter>log</Filter>
+    </ClCompile>
+    <ClCompile Include="src\log\logItem.c">
+      <Filter>log</Filter>
+    </ClCompile>
+    <ClCompile Include="src\frame\stackSegment.c">
+      <Filter>frame</Filter>
+    </ClCompile>
+    <ClCompile Include="src\frame\throw.c">
+      <Filter>frame</Filter>
+    </ClCompile>
+    <ClCompile Include="src\class\nativeTable.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="src\class\table.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="src\class\typeCheck.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resolution\file\fileAccess.c">
+      <Filter>resolution\file</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resolution\file\fileSystemClassFile.c">
+      <Filter>resolution\file</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resolution\file\memClassFile.c">
+      <Filter>resolution\file</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resolution\file\staticClassFiles.c">
+      <Filter>resolution\file</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resolution\load\construct.c">
+      <Filter>resolution\load</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resolution\load\initializeLoader.c">
+      <Filter>resolution\load</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resolution\load\iterativeLoad.c">
+      <Filter>resolution\load</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resolution\load\load.c">
+      <Filter>resolution\load</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resolution\load\preload.c">
+      <Filter>resolution\load</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resolution\load\prepare.c">
+      <Filter>resolution\load</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resolution\resolve\lookup.c">
+      <Filter>resolution\resolve</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resolution\resolve\resolve.c">
+      <Filter>resolution\resolve</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resolution\createThrowable.c">
+      <Filter>resolution</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resolution\resource.c">
+      <Filter>resolution</Filter>
+    </ClCompile>
+    <ClCompile Include="src\execute\handlers\arithmeticHandlers.c">
+      <Filter>execute\handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\execute\handlers\branchHandlers.c">
+      <Filter>execute\handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\execute\handlers\conversionHandlers.c">
+      <Filter>execute\handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\execute\handlers\fieldHandlers.c">
+      <Filter>execute\handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\execute\handlers\invokeHandlers.c">
+      <Filter>execute\handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\execute\handlers\localHandlers.c">
+      <Filter>execute\handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\execute\handlers\objectHandlers.c">
+      <Filter>execute\handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\execute\handlers\specialHandlers.c">
+      <Filter>execute\handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\execute\handlers\stackHandlers.c">
+      <Filter>execute\handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\execute\handlers\wideHandlers.c">
+      <Filter>execute\handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\execute\execute.c">
+      <Filter>execute</Filter>
+    </ClCompile>
+    <ClCompile Include="src\natives\initializeNatives.c">
+      <Filter>natives</Filter>
+    </ClCompile>
+    <ClCompile Include="src\natives\natives.c">
+      <Filter>natives</Filter>
+    </ClCompile>
+    <ClCompile Include="src\run\run.c">
+      <Filter>run</Filter>
+    </ClCompile>
+    <ClCompile Include="src\run\test.c">
+      <Filter>run</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

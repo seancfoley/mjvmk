@@ -1,0 +1,104 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "demo", "demo\demo.vcxproj", "{8067BA86-F893-45B5-B162-17BFBFDB4EDD}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "jvm", "jvm\jvm.vcxproj", "{5C0401A1-7CF7-43D6-938D-3A6A1BC6A9A1}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lib", "lib\lib.vcxproj", "{BA3C1B3C-CECD-4BA1-A47F-59ABE6EED398}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mjvmk", "mjvmk.vcxproj", "{AF1D3130-982D-4BDF-A966-12F55C5E6552}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "os", "os\os.vcxproj", "{5FCAA8CD-30DE-406F-9473-6EA79F32336B}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "romize", "romize\romize.vcxproj", "{599435CA-355D-496E-BF6A-D0B2D1AC5DC5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+		Romize Debug|x86 = Romize Debug|x86
+		Romize Release|x86 = Romize Release|x86
+		Template|x86 = Template|x86
+		x86 Release|x86 = x86 Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8067BA86-F893-45B5-B162-17BFBFDB4EDD}.Debug|x86.ActiveCfg = x86 Release|Win32
+		{8067BA86-F893-45B5-B162-17BFBFDB4EDD}.Debug|x86.Build.0 = x86 Release|Win32
+		{8067BA86-F893-45B5-B162-17BFBFDB4EDD}.Release|x86.ActiveCfg = x86 Release|Win32
+		{8067BA86-F893-45B5-B162-17BFBFDB4EDD}.Release|x86.Build.0 = x86 Release|Win32
+		{8067BA86-F893-45B5-B162-17BFBFDB4EDD}.Romize Debug|x86.ActiveCfg = x86 Release|Win32
+		{8067BA86-F893-45B5-B162-17BFBFDB4EDD}.Romize Debug|x86.Build.0 = x86 Release|Win32
+		{8067BA86-F893-45B5-B162-17BFBFDB4EDD}.Romize Release|x86.ActiveCfg = x86 Release|Win32
+		{8067BA86-F893-45B5-B162-17BFBFDB4EDD}.Romize Release|x86.Build.0 = x86 Release|Win32
+		{8067BA86-F893-45B5-B162-17BFBFDB4EDD}.Template|x86.ActiveCfg = x86 Release|Win32
+		{8067BA86-F893-45B5-B162-17BFBFDB4EDD}.Template|x86.Build.0 = x86 Release|Win32
+		{8067BA86-F893-45B5-B162-17BFBFDB4EDD}.x86 Release|x86.ActiveCfg = x86 Release|Win32
+		{8067BA86-F893-45B5-B162-17BFBFDB4EDD}.x86 Release|x86.Build.0 = x86 Release|Win32
+		{5C0401A1-7CF7-43D6-938D-3A6A1BC6A9A1}.Debug|x86.ActiveCfg = Debug|Win32
+		{5C0401A1-7CF7-43D6-938D-3A6A1BC6A9A1}.Debug|x86.Build.0 = Debug|Win32
+		{5C0401A1-7CF7-43D6-938D-3A6A1BC6A9A1}.Release|x86.ActiveCfg = Release|Win32
+		{5C0401A1-7CF7-43D6-938D-3A6A1BC6A9A1}.Release|x86.Build.0 = Release|Win32
+		{5C0401A1-7CF7-43D6-938D-3A6A1BC6A9A1}.Romize Debug|x86.ActiveCfg = Romize Debug|Win32
+		{5C0401A1-7CF7-43D6-938D-3A6A1BC6A9A1}.Romize Debug|x86.Build.0 = Romize Debug|Win32
+		{5C0401A1-7CF7-43D6-938D-3A6A1BC6A9A1}.Romize Release|x86.ActiveCfg = Romize Release|Win32
+		{5C0401A1-7CF7-43D6-938D-3A6A1BC6A9A1}.Romize Release|x86.Build.0 = Romize Release|Win32
+		{5C0401A1-7CF7-43D6-938D-3A6A1BC6A9A1}.Template|x86.ActiveCfg = Template|Win32
+		{5C0401A1-7CF7-43D6-938D-3A6A1BC6A9A1}.Template|x86.Build.0 = Template|Win32
+		{5C0401A1-7CF7-43D6-938D-3A6A1BC6A9A1}.x86 Release|x86.ActiveCfg = x86 Release|Win32
+		{5C0401A1-7CF7-43D6-938D-3A6A1BC6A9A1}.x86 Release|x86.Build.0 = x86 Release|Win32
+		{BA3C1B3C-CECD-4BA1-A47F-59ABE6EED398}.Debug|x86.ActiveCfg = Debug|Win32
+		{BA3C1B3C-CECD-4BA1-A47F-59ABE6EED398}.Debug|x86.Build.0 = Debug|Win32
+		{BA3C1B3C-CECD-4BA1-A47F-59ABE6EED398}.Release|x86.ActiveCfg = Release|Win32
+		{BA3C1B3C-CECD-4BA1-A47F-59ABE6EED398}.Release|x86.Build.0 = Release|Win32
+		{BA3C1B3C-CECD-4BA1-A47F-59ABE6EED398}.Romize Debug|x86.ActiveCfg = Debug|Win32
+		{BA3C1B3C-CECD-4BA1-A47F-59ABE6EED398}.Romize Debug|x86.Build.0 = Debug|Win32
+		{BA3C1B3C-CECD-4BA1-A47F-59ABE6EED398}.Romize Release|x86.ActiveCfg = Release|Win32
+		{BA3C1B3C-CECD-4BA1-A47F-59ABE6EED398}.Romize Release|x86.Build.0 = Release|Win32
+		{BA3C1B3C-CECD-4BA1-A47F-59ABE6EED398}.Template|x86.ActiveCfg = Template|Win32
+		{BA3C1B3C-CECD-4BA1-A47F-59ABE6EED398}.Template|x86.Build.0 = Template|Win32
+		{BA3C1B3C-CECD-4BA1-A47F-59ABE6EED398}.x86 Release|x86.ActiveCfg = x86 Release|Win32
+		{BA3C1B3C-CECD-4BA1-A47F-59ABE6EED398}.x86 Release|x86.Build.0 = x86 Release|Win32
+		{AF1D3130-982D-4BDF-A966-12F55C5E6552}.Debug|x86.ActiveCfg = Debug|Win32
+		{AF1D3130-982D-4BDF-A966-12F55C5E6552}.Debug|x86.Build.0 = Debug|Win32
+		{AF1D3130-982D-4BDF-A966-12F55C5E6552}.Release|x86.ActiveCfg = Release|Win32
+		{AF1D3130-982D-4BDF-A966-12F55C5E6552}.Release|x86.Build.0 = Release|Win32
+		{AF1D3130-982D-4BDF-A966-12F55C5E6552}.Romize Debug|x86.ActiveCfg = Debug|Win32
+		{AF1D3130-982D-4BDF-A966-12F55C5E6552}.Romize Debug|x86.Build.0 = Debug|Win32
+		{AF1D3130-982D-4BDF-A966-12F55C5E6552}.Romize Release|x86.ActiveCfg = Release|Win32
+		{AF1D3130-982D-4BDF-A966-12F55C5E6552}.Romize Release|x86.Build.0 = Release|Win32
+		{AF1D3130-982D-4BDF-A966-12F55C5E6552}.Template|x86.ActiveCfg = Template|Win32
+		{AF1D3130-982D-4BDF-A966-12F55C5E6552}.Template|x86.Build.0 = Template|Win32
+		{AF1D3130-982D-4BDF-A966-12F55C5E6552}.x86 Release|x86.ActiveCfg = x86 Release|Win32
+		{AF1D3130-982D-4BDF-A966-12F55C5E6552}.x86 Release|x86.Build.0 = x86 Release|Win32
+		{5FCAA8CD-30DE-406F-9473-6EA79F32336B}.Debug|x86.ActiveCfg = Debug|Win32
+		{5FCAA8CD-30DE-406F-9473-6EA79F32336B}.Debug|x86.Build.0 = Debug|Win32
+		{5FCAA8CD-30DE-406F-9473-6EA79F32336B}.Release|x86.ActiveCfg = Release|Win32
+		{5FCAA8CD-30DE-406F-9473-6EA79F32336B}.Release|x86.Build.0 = Release|Win32
+		{5FCAA8CD-30DE-406F-9473-6EA79F32336B}.Romize Debug|x86.ActiveCfg = Debug|Win32
+		{5FCAA8CD-30DE-406F-9473-6EA79F32336B}.Romize Debug|x86.Build.0 = Debug|Win32
+		{5FCAA8CD-30DE-406F-9473-6EA79F32336B}.Romize Release|x86.ActiveCfg = Release|Win32
+		{5FCAA8CD-30DE-406F-9473-6EA79F32336B}.Romize Release|x86.Build.0 = Release|Win32
+		{5FCAA8CD-30DE-406F-9473-6EA79F32336B}.Template|x86.ActiveCfg = Template|Win32
+		{5FCAA8CD-30DE-406F-9473-6EA79F32336B}.Template|x86.Build.0 = Template|Win32
+		{5FCAA8CD-30DE-406F-9473-6EA79F32336B}.x86 Release|x86.ActiveCfg = x86 Release|Win32
+		{5FCAA8CD-30DE-406F-9473-6EA79F32336B}.x86 Release|x86.Build.0 = x86 Release|Win32
+		{599435CA-355D-496E-BF6A-D0B2D1AC5DC5}.Debug|x86.ActiveCfg = Romize Debug|Win32
+		{599435CA-355D-496E-BF6A-D0B2D1AC5DC5}.Debug|x86.Build.0 = Romize Debug|Win32
+		{599435CA-355D-496E-BF6A-D0B2D1AC5DC5}.Release|x86.ActiveCfg = Romize Release|Win32
+		{599435CA-355D-496E-BF6A-D0B2D1AC5DC5}.Release|x86.Build.0 = Romize Release|Win32
+		{599435CA-355D-496E-BF6A-D0B2D1AC5DC5}.Romize Debug|x86.ActiveCfg = Romize Debug|Win32
+		{599435CA-355D-496E-BF6A-D0B2D1AC5DC5}.Romize Debug|x86.Build.0 = Romize Debug|Win32
+		{599435CA-355D-496E-BF6A-D0B2D1AC5DC5}.Romize Release|x86.ActiveCfg = Romize Release|Win32
+		{599435CA-355D-496E-BF6A-D0B2D1AC5DC5}.Romize Release|x86.Build.0 = Romize Release|Win32
+		{599435CA-355D-496E-BF6A-D0B2D1AC5DC5}.Template|x86.ActiveCfg = Template|Win32
+		{599435CA-355D-496E-BF6A-D0B2D1AC5DC5}.Template|x86.Build.0 = Template|Win32
+		{599435CA-355D-496E-BF6A-D0B2D1AC5DC5}.x86 Release|x86.ActiveCfg = Template|Win32
+		{599435CA-355D-496E-BF6A-D0B2D1AC5DC5}.x86 Release|x86.Build.0 = Template|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

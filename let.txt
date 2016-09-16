@@ -1,0 +1,12 @@
+The package consists of two parts:
+-a small OS
+-a java CLDC interpreter VM
+
+The OS must be ported to a particular system.
+
+The package has been tested running on x86 machines from a floppy disk.  The OS has been tested as a stand-alone
+microkernel.  
+The java vm has been tested running on top of the OS, as well as running in windows as a windows application.
+This was made capable since the VM can run with kernel-level threads or user-level threads.  User level threads
+allow the VM to run as a standard windows application, allowing for advanced testing of the VM.  Kernel level threads
+allow for the VM to run directly on an embedded system.

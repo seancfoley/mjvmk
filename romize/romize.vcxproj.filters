@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="transform">
+      <UniqueIdentifier>{f99f571f-7def-406b-89b2-e4420cce929b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="romize">
+      <UniqueIdentifier>{27facb61-8b01-4275-818a-2bd1c8443786}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\transform\byteCodeFilter.c">
+      <Filter>transform</Filter>
+    </ClCompile>
+    <ClCompile Include="src\transform\instructionDescs.c">
+      <Filter>transform</Filter>
+    </ClCompile>
+    <ClCompile Include="src\transform\methodInvokeFilter.c">
+      <Filter>transform</Filter>
+    </ClCompile>
+    <ClCompile Include="src\romize\romize.c">
+      <Filter>romize</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\transform\byteCodeFilter.h">
+      <Filter>transform</Filter>
+    </ClInclude>
+    <ClInclude Include="src\transform\instructionDescs.h">
+      <Filter>transform</Filter>
+    </ClInclude>
+    <ClInclude Include="src\transform\methodInvokeFilter.h">
+      <Filter>transform</Filter>
+    </ClInclude>
+    <ClInclude Include="src\romize\romize.h">
+      <Filter>romize</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

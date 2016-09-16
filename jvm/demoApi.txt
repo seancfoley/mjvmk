@@ -1,0 +1,12 @@
+
+test/Test.class
+test/Test$Bla.class
+test/Test$Bla2.class
+test/Test$Bla3.class
+test/Test$X.class
+test/Test$I.class
+test/Test$1.class
+test/Test$2.class
+test/Test$3.class
+test/Test$4.class
+test/Test$5.class

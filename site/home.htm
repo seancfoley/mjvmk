@@ -1,0 +1,458 @@
+<html>
+<title>Folsena Microsystems - Embedded real-time operating systems integrating native and java threads</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<META NAME="TITLE" CONTENT="Folsena Microsystems - Embedded real-time operating systems integrating native and java threads">
+<META NAME="Description" CONTENT="Folsena provides the Mavos micro operating system for real-time java 
+applications on the embedded platform">
+<META NAME="Keywords" CONTENT="Mavos, Mam, Embedded kernel, Embedded operating System, Real-time operating system, Real time operating system, RTOS, Embedded software, Embedded system, Embedded device, Embedded java, Operating system, Embedded, Kernel, Real Time Kernel, Preemptive kernel, preemptive, ROMable, RAM, ROM, EPROM, EEPROM, Scalable, Ports, Microprocessor, Microcontroller, Context Switching, Task Switching, Task scheduling, Thread switching, thread scheduling, java, java micro edition, J2ME, CLDC, connected limited device configuration, connected device configuration, CDC, Mobile Information Device Profile, MIDP, DoJa, wireless, handset, cell phone, semiconductor, chip, phone, portable">
+
+
+
+<link rel="stylesheet" type="text/css" href="style.css" title="master">
+<link rel="prefetch" href="products.htm">
+<link rel="prefetch" href="specs.htm">
+<link rel="prefetch" href="download.htm">
+<link rel="prefetch" href="contact.htm">
+<link rel="prefetch" href="rt.htm">
+<link rel="prefetch" href="ts.htm">
+
+
+<script>
+var im1 = new Image();
+var im2 = new Image();
+var im3 = new Image();
+var im4 = new Image();
+var im5 = new Image();
+im1.src = 'home2.gif';
+im2.src = 'prod2.gif';
+im3.src = 'spec2.gif';
+im4.src = 'down2.gif';
+im5.src = 'cont2.gif';
+
+function switchIm(im, newSrc) {
+	if(document.images != null)
+		im.src=newSrc;
+}
+</script>
+
+
+<body bgcolor=#ebeaf0 topmargin=0 leftmargin=0 marginwidth=0 marginheight=0>
+
+<div id=logo>
+<img src=logo3.gif>
+</div>
+
+
+
+<table border=0 cellspacing=0 cellpadding=0 cols=4 rows=5 width=822>
+
+<tr><td height=30 width=200 bgcolor=#ffffff valign=top align=right><img src=topleft3.gif></td>
+
+<td bgcolor=#000000 width=526><img src=menul2.gif><a border=0 href="home.htm" onMouseOver="switchIm(homeIm1, 'home2.gif');" onMouseOut="switchIm(homeIm1, 'home1.gif');"><img name=homeIm1 src=home1.gif border=0></a><a border=0 href="products.htm" onMouseOver="switchIm(productIm1, 'prod2.gif');" onMouseOut="switchIm(productIm1, 'product1.gif');"><img src=product1.gif name=productIm1 border=0></a><a border=0 href="specs.htm" onMouseOver="switchIm(specsIm1, 'spec2.gif');" onMouseOut="switchIm(specsIm1, 'specs1.gif');"><img src=specs1.gif name=specsIm1 border=0></a><a border=0 href="download.htm" onMouseOver="switchIm(downloadIm1, 'down2.gif');" onMouseOut="switchIm(downloadIm1, 'downloa1.gif');"><img src=downloa1.gif name=downloadIm1 border=0></a><a border=0 href="contact.htm" onMouseOver="switchIm(contactIm1, 'cont2.gif');" onMouseOut="switchIm(contactIm1, 'contact1.gif');"><img src=contact1.gif name=contactIm1 border=0></a><img src=menur2.gif></td>
+<td width=46 bgcolor=#000000 valign=top>&nbsp;</td>
+<td width=50 rowspan=5 bgcolor=#dbdae0>&nbsp;</td>
+</tr>
+
+
+<tr>
+<td width=200 height=20 bgcolor=#ffffff align=left><spacer type=block width=1></td>
+<td width=526 bgcolor=#ffffff align=left><spacer type=block width=1></td>
+<td width=46 bgcolor=#000000 valign=top><img border=0 src=tittopr6.gif></td>
+</tr>
+
+<tr>
+<!-- if extending the page length, increase the height below by the required number of pixels-->
+<td height=610 bgcolor=#ffffff colspan=3>&nbsp;</td></tr>
+
+<tr><td height=220 bgcolor=#ffffff colspan=3>&nbsp;</td></tr>
+
+<tr>
+<td colspan=3 align=center bgcolor=#dbdae0>
+<br>
+<span class=copyright>
+&#169; Folsena Microsystems 2002.  All rights reserved.<br><br>
+</span>
+</td>
+</tr>
+</table>
+<br>
+
+
+
+
+
+
+<div id="leftNavBarHome">
+<!------ left side navigation bar -------->
+
+<table rows=5 cols=1 cellpadding=0 cellspacing=0 border=0>
+
+<tr><td width=101><img src=bmenut5.gif name=topLowIm></td></tr>
+
+<tr><td align=center bgcolor=#000000 valign=top>
+<table width=81 rows=1 cols=4 cellpadding=0 cellspacing=0 border=0>
+<tr>
+<td width=1 bgcolor=#f4f400><spacer type=block width=1></td>
+<td width=78>
+<a href="home.htm" onMouseOver="switchIm(homeIm2, 'home2.gif');" onMouseOut="switchIm(homeIm2, 'home1.gif');"><img border=0 name=homeIm2 src=home1.gif></a><br>
+<a href="products.htm" onMouseOver="switchIm(productIm2, 'prod2.gif');" onMouseOut="switchIm(productIm2, 'product1.gif');"><img src=product1.gif name=productIm2 border=0></a><br>
+<a href="specs.htm" onMouseOver="switchIm(specsIm2, 'spec2.gif');" onMouseOut="switchIm(specsIm2, 'specs1.gif');"><img src=specs1.gif name=specsIm2 border=0></a><br>
+<a href="download.htm" onMouseOver="switchIm(downloadIm2, 'down2.gif');" onMouseOut="switchIm(downloadIm2, 'downloa1.gif');"><img src=downloa1.gif name=downloadIm2 border=0></a><br>
+<a href="contact.htm" onMouseOver="switchIm(contactIm2, 'cont2.gif');" onMouseOut="switchIm(contactIm2, 'contact1.gif');"><img src=contact1.gif name=contactIm2 border=0></a><br>
+</td>
+<td width=2 bgcolor=#f4f400><spacer type=block width=2></td>
+</tr>
+</table>
+</td></tr>
+
+<tr><td bgcolor=#000000><img src=bmenub5.gif name=bottomLowIm></td></tr>
+
+<tr><td bgcolor=#000000>
+<p>&nbsp;</p>
+
+</td></tr>
+
+<tr><td height=115 bgcolor=#dbdae0>
+&nbsp;
+</td></tr>
+
+</table>
+
+<!------ end left side navigation bar -------->
+</div>
+
+
+
+
+
+
+
+
+
+
+<div id=content>
+
+
+<table rows=3 cols=3 cellspacing=0 cellpadding=0 border=0 width=772>
+
+<tr>
+
+<td width=137 height=80>&nbsp;</td>
+<td width=65>&nbsp;</td>
+
+<!-- if extending the page length, increase the height below by the required number of pixels-->
+
+<td rowspan=2 valign=top height=510>
+
+<br>
+
+<!-------- boxes on right side ------->
+
+<!-------- microkernel box ----------->
+
+<img src=tab8.gif><br>
+
+<!-------- outer 3 column table ------>
+
+<table cols=3 rows=2 cellpadding=0 cellspacing=0 border=0>
+
+<tr><td width=2 bgcolor=#687886><spacer type=block width=2></td>
+
+<td width=534 background=grad5.gif>
+<table cols=1 rows=1 cellpadding=3 cellspacing=0 border=0 width=528><tr><td>
+<span class="featuresTextTitle">
+&nbsp;Mavos Micro Java Virtual Machine O/S
+<br>
+</span>
+</td></tr></table>
+</td>
+
+<td width=2 bgcolor=#687886><spacer type=block width=2></td>
+</tr>
+
+
+<tr>
+<td width=2 bgcolor=#687886><spacer type=block width=2></td>
+
+<td width=534>
+
+
+
+<!------- inner 1 column table ---->
+
+<table cols=1 rows=8 cellpadding=0 cellspacing=0 width=534 border=0>
+
+<tr><td width=534 bgcolor=#687886><table cols=1 rows=1 cellpadding=4 cellspacing=0 border=0><tr><td width=526 bgcolor=#ffffff>
+<span class="featuresText1">
+The <a href=products.htm#OS>Mavos real-time O/S</a> is a portable <b>preemptive real-time micro operating system</b> with an integrated <b>CLDC java virtual machine</b> designed for <b>embedded</b> and <b>wireless</b> platforms. 
+<br><br>
+</span>
+<span class="featuresText3">
+By using the Mavos operating system you take adavantage of the quickest route and the most compact package available for bringing a full-fledged java development environment to your real-time embedded system.  Get preemptive real-time O/S performance, while giving the system the flexibility that a java development environment provides, capable of running any combination of native and java tasks in tandem.  The benefits in cost, time-to-market, application development and portability are comprehensive.<br><br>
+
+</span>
+</td></tr></table></td></tr>
+
+
+<tr><td width=534 bgcolor=#687886><table cols=1 rows=1 cellpadding=3 cellspacing=0 border=0><tr><td width=528>
+<span class="featuresText2">
+preemptive real-time micro operating system
+</span>
+</td></tr></table></td></tr>
+
+
+<tr><td width=534 bgcolor=#687886><table cols=1 rows=1 cellpadding=5 cellspacing=0 border=0><tr><td width=524 bgcolor=#d3d9de>
+<span class="featuresText3">
+<span class="bullet">&#8226;&nbsp;</span>Preemptive priority based scheduling and weighted CPU time sharing<br>
+<span class="bullet">&#8226;&nbsp;</span>Synchronization and wait lists with notification and timeouts enabled by monitors<br>
+<span class="bullet">&#8226;&nbsp;</span>Real-time with low interrupt latency and response<br>
+<span class="bullet">&#8226;&nbsp;</span>Dual-purpose heap for explicit memory allocation and release as well as exact mark-and-sweep garbage collection<br>
+<br>
+</span>
+</td></tr></table></td></tr>
+
+
+<tr><td width=534 bgcolor=#687886><table cols=1 rows=1 cellpadding=3 cellspacing=0 border=0><tr><td width=528>
+<span class="featuresText2">
+high performance J2ME CLDC java virtual machine
+</span>
+</td></tr></table>
+</td></tr>
+
+
+
+<tr><td width=534 bgcolor=#869898><table cols=1 rows=1 cellpadding=5 cellspacing=0 border=0><tr><td width=524 bgcolor=#d3d9de>
+<span class="featuresText3">
+
+<b>Bring the java language to your wireless or embedded platform</b><br>
+<span class="bullet">&#8226;&nbsp;</span>Full support for the CLDC virtual machine and class librairies<br>
+<span class="bullet">&#8226;&nbsp;</span>Exception and error handling fully supported<br>
+<span class="bullet">&#8226;&nbsp;</span>Floating point supported and configurable to the processor's floating point capabilities<br>
+<span class="bullet">&#8226;&nbsp;</span>Advanced threading and process model for a complete separation of java applications into distinct memory spaces<br>
+<br>
+</span>
+</td></tr></table></td></tr>
+
+
+
+
+<tr><td width=534 bgcolor=#687886><table cols=1 rows=1 cellpadding=3 cellspacing=0 border=0><tr><td width=528>
+<span class="featuresText2">
+advanced features
+</span>
+</td></tr></table>
+</td></tr>
+
+
+
+<tr><td width=534 bgcolor=#869898><table cols=1 rows=1 cellpadding=5 cellspacing=0 border=0><tr><td width=524 bgcolor=#d3d9de>
+<span class="featuresText3">
+<span class="bullet">&#8226;&nbsp;</span><span class="featuresText3Emphasized"><a href=products.htm#OSSize>Very small size</a></span><br>
+<span class="bullet">&#8226;&nbsp;</span>Built in romizing support<br>
+<span class="bullet">&#8226;&nbsp;</span>Fully self contained, no additional libraries required<br>
+<span class="bullet">&#8226;&nbsp;</span>Extendable to support java instruction execution in hardware and JIT compilation<br>
+<span class="bullet">&#8226;&nbsp;</span>A second java thread scheduler enables JVM to be run on an existing O/S<br>
+<br>
+</span>
+</td></tr></table></td></tr>
+
+
+
+
+<tr>
+<td width=534 bgcolor=#687886>
+<span class="featuresBottom">
+&nbsp;
+</span>
+</td>
+</tr>
+</table>
+
+<!------- end of inner 1 column table ---->
+
+</td><td width=2 bgcolor=#687886><spacer type=block width=2></td>
+</tr>
+
+
+
+</table>
+
+<!-------- end of outer 3 column table ------>
+
+<!-------- end of microkernel box --------------->
+
+</td>
+</tr>
+
+<tr>
+
+<!-- if extending the page length, increase the height below by the required number of pixels-->
+
+<td colspan=2 valign=top height=430>
+
+
+<!-------- boxes on left side ------->
+
+<table width=178 cellspacing=0 cellpadding=0 border=0 cols=4 rows=10>
+<tr><td width=22 rowspan=10><spacer type=block width=1></td>
+<td width=1 rowspan=10 bgcolor=#777777><spacer type=block width=1></td>
+
+<td width=154 height=5 bgcolor=#999999><spacer type=block width=1></td>
+
+<td width=1 rowspan=10 bgcolor=#777777><spacer type=block width=1></td>
+</tr>
+
+<tr><td width=154 bgcolor=#ffffff>
+<table width=154 cellspacing=0 cellpadding=8 border=0><tr><td align=center><img src=phoneout.gif></td></tr></table>
+</td></tr>
+
+
+<tr>
+<td width=154 bgcolor=#dddddd>
+<table width=154  cellspacing=0 cellpadding=5 border=0><tr><td>
+<span class=sideBar1>
+microprocessor &amp; microcontroller operating systems
+</span>
+</td></tr></table>
+</td></tr>
+
+<tr><td width=154 bgcolor=#ffffff>
+<table width=154  cellspacing=0 cellpadding=5 border=0><tr><td align=center valign=middle><img src=handout.gif></td></tr></table>
+</td></tr>
+
+<tr>
+<td width=154 bgcolor=#dddddd>
+<table width=154  cellspacing=0 cellpadding=5 border=0><tr><td>
+<span class=sideBar1>
+embedded and wireless software
+</span>
+</td></tr></table>
+</td></tr>
+
+<tr><td width=154 bgcolor=#ffffff>
+<table width=154  cellspacing=0 cellpadding=5 border=0><tr><td align=center><img src=camout.gif></td></tr></table>
+</td></tr>
+
+<tr>
+<td width=154 bgcolor=#dddddd>
+<table width=154 cellspacing=0 cellpadding=5 border=0><tr><td>
+<span class=sideBar1>
+peripheral and driver development
+</span>
+</td></tr></table>
+</td></tr>
+
+<tr><td width=154 bgcolor=#ffffff>
+<table width=154  cellspacing=0 cellpadding=5 border=0><tr><td align=center><img src=atmout2.gif></td></tr></table>
+</td></tr>
+
+<tr><td width=154 height=2 bgcolor=#ffffff><spacer type=block width=1></td></tr>
+
+<tr><td width=154 height=5 bgcolor=#999999><spacer type=block width=1></td>
+</tr>
+</table>
+
+</td></tr>
+
+<tr>
+<td>&nbsp;</td>
+<td colspan=2 valign=top>
+
+<br>
+
+<!-------- application manager ----------->
+
+<img src=tab8.gif><br>
+
+<!-------- outer 3 column table ------>
+
+<table cols=3 rows=2 cellpadding=0 cellspacing=0 border=0>
+
+<tr><td width=2 bgcolor=#687886><spacer type=block width=2></td>
+<td width=606 background=grad5.gif>
+
+<table cols=1 rows=1 cellpadding=3 cellspacing=0 border=0 width=600><tr><td>
+<span class="featuresTextTitle">
+&nbsp;Mam J2ME application manager
+<br>
+</span>
+</td></tr></table>
+</td>
+
+<td width=2 bgcolor=#687886><spacer type=block width=2></td>
+</tr>
+
+<tr><td width=2 bgcolor=#687886><spacer type=block width=2></td>
+
+
+<td width=606>
+
+<!------- inner 1 column table ---->
+
+<table cols=1 rows=3 cellpadding=0 cellspacing=0 width=606 border=0>
+<tr><td bgcolor=#687886><table cols=1 rows=1 cellpadding=5 cellspacing=0 border=0><tr><td width=596 bgcolor=#ffffff>
+<span class="featuresText1">
+The <a href=products.htm#appmgr>Mam java application manager</a> pairs with MIDP, the mobile information device profile, to provide a desktop for Mavos.
+<br>
+</span>
+<span class="featuresText3"><br></span>
+</td></tr></table></td></tr>
+
+
+<tr><td bgcolor=#687886><table cols=1 rows=1 cellpadding=3 cellspacing=0 border=0><tr><td width=600>
+<span class="featuresText2">
+user navigation and control 
+</span>
+</td></tr></table></td></tr>
+
+
+
+<tr><td bgcolor=#687886><table cols=1 rows=1 cellpadding=5 cellspacing=0 border=0><tr><td width=596 bgcolor=#d3d9de>
+<span class="featuresText3">
+<span class="bullet">&#8226;&nbsp;</span>Simple and easy navigation and system control with a small footprint<br>
+<span class="bullet">&#8226;&nbsp;</span>Small and efficient use of MIDP provides a graphical user interface<br>
+<span class="bullet">&#8226;&nbsp;</span>Easily adaptable to a non-MIDP profile such as DoJa<br> 
+<br>
+</span>
+</td></tr></table></td></tr>
+
+
+
+
+
+<tr>
+<td bgcolor=#687886>
+<span class="featuresBottom">
+&nbsp;
+</span>
+</td>
+</tr>
+</table>
+
+<!------- end of inner 1 column table ---->
+
+
+</td><td width=2 bgcolor=#687886><spacer type=block width=2></td>
+</tr>
+
+
+
+</table>
+
+<!-------- end of outer 3 column table ------>
+
+<!-------- end of app manager boxes --------->
+
+</td></tr></table>
+
+
+
+</div>
+
+
+
+
+
+
+</body>
+</html>

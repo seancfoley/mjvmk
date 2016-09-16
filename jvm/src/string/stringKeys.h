@@ -1,0 +1,158 @@
+#ifndef STRINGKEYS_H
+#define STRINGKEYS_H
+
+#include "stringPool.h"
+
+/* keys required by the system */
+
+extern NameType initNameType;
+extern NameType clinitNameType;
+extern NameType runNameType;
+extern NameType mainNameType;
+extern NamePackage javaLangObjectKey;
+extern NamePackage javaLangClassKey;
+extern NamePackage javaLangThrowableKey;
+extern NamePackage javaLangThreadKey;
+extern NamePackage javaLangStringBufferKey;
+extern NamePackage javaLangStringKey;
+extern NamePackage javaLangBooleanKey;
+extern NamePackage javaLangByteKey;
+extern NamePackage javaLangIntegerKey;
+extern NamePackage javaLangLongKey;
+extern NamePackage javaLangShortKey;
+extern NamePackage javaLangCharacterKey;
+extern NamePackage javaLangMathKey;
+extern NamePackage javaLangSystemKey;
+extern NamePackage javaLangRuntimeKey;
+extern NamePackage javaLangStringArrayKey;
+extern NamePackage charArrayKey;
+extern NamePackage integerArrayKey;
+extern NamePackage shortArrayKey;
+extern NamePackage javaUtilVectorKey;
+extern NamePackage javaUtilHashtableKey;
+extern NamePackage comMjvmkStackTraceKey;
+extern NamePackage comMjvmkStandardOutputStreamKey;
+extern NamePackage comMjvmkStandardErrorStreamKey;
+extern NamePackage comMjvmkResourceInputStreamKey;
+
+extern NamePackage javaLangErrorKey;
+extern NamePackage javaLangOutOfMemoryErrorKey;
+extern NamePackage javaLangStackOverflowErrorKey;
+extern NamePackage javaLangVirtualMachineErrorKey;
+extern NamePackage javaLangLinkageErrorKey;
+extern NamePackage javaLangExceptionInInitializerErrorKey;
+extern NamePackage javaLangNoClassDefFoundErrorKey;
+
+extern NamePackage javaLangIllegalMonitorStateExceptionKey;
+extern NamePackage javaLangNullPointerExceptionKey;
+extern NamePackage javaLangClassCastExceptionKey;
+extern NamePackage javaLangArrayIndexOutOfBoundsExceptionKey;
+extern NamePackage javaLangArithmeticExceptionKey;
+extern NamePackage javaLangNegativeArraySizeExceptionKey;
+extern NamePackage javaLangInterruptedExceptionKey;
+extern NamePackage javaLangInstantiationExceptionKey;
+extern NamePackage javaLangIllegalAccessExceptionKey;
+extern NamePackage javaLangArrayStoreExceptionKey;
+extern NamePackage javaLangIllegalArgumentExceptionKey;
+extern NamePackage javaLangIllegalThreadStateExceptionKey;
+extern NamePackage javaLangStringIndexOutOfBoundsExceptionKey;
+extern NamePackage javaIOExceptionKey;
+
+
+
+
+
+extern UTF8StringHashEntry emptyString;
+extern UTF8StringHashEntry maxArrayDepthString;
+
+#define getArrayDepthStringByDepth(depth) (maxArrayDepthString.string + (maxArrayDepthString.length - (depth)))
+#define getArrayDepthString(packageKey) getArrayDepthStringByDepth(getArrayDepth(packageKey))
+
+
+extern UTF8StringHashEntry mainString;
+extern UTF8StringHashEntry getClassString;
+extern UTF8StringHashEntry hashCodeString;
+extern UTF8StringHashEntry notifyString;
+extern UTF8StringHashEntry notifyAllString;
+extern UTF8StringHashEntry waitString;
+extern UTF8StringHashEntry isInterfaceString;
+extern UTF8StringHashEntry isArrayString;
+extern UTF8StringHashEntry isInstanceString;
+extern UTF8StringHashEntry isAssignableFromString;
+extern UTF8StringHashEntry getNameString;
+extern UTF8StringHashEntry newInstanceString;
+extern UTF8StringHashEntry forNameString;
+extern UTF8StringHashEntry getResourceAsStreamString;
+extern UTF8StringHashEntry printStackTraceString;
+extern UTF8StringHashEntry createStackTraceString;
+extern UTF8StringHashEntry identityHashCodeString;
+extern UTF8StringHashEntry currentTimeMillisString;
+extern UTF8StringHashEntry arraycopyString;
+extern UTF8StringHashEntry getPropertyString;
+extern UTF8StringHashEntry freeMemoryString;
+extern UTF8StringHashEntry totalMemoryString;
+extern UTF8StringHashEntry gcString;
+extern UTF8StringHashEntry exitString;
+extern UTF8StringHashEntry lengthString;
+extern UTF8StringHashEntry charAtString;
+extern UTF8StringHashEntry charAtInternalString;
+extern UTF8StringHashEntry booleanValueString;
+extern UTF8StringHashEntry byteValueString;
+extern UTF8StringHashEntry shortValueString;
+extern UTF8StringHashEntry charValueString;
+extern UTF8StringHashEntry intValueString;
+extern UTF8StringHashEntry minString;
+extern UTF8StringHashEntry maxString;
+extern UTF8StringHashEntry absString;
+extern UTF8StringHashEntry startString;
+extern UTF8StringHashEntry yieldString;
+extern UTF8StringHashEntry currentThreadString;
+extern UTF8StringHashEntry sleepString;
+extern UTF8StringHashEntry isAliveString;
+extern UTF8StringHashEntry setPriorityString;
+extern UTF8StringHashEntry getPriorityString;
+extern UTF8StringHashEntry activeCountString;
+extern UTF8StringHashEntry joinString;
+extern UTF8StringHashEntry interruptString;
+extern UTF8StringHashEntry sizeString;
+extern UTF8StringHashEntry internalElementAtString;
+extern UTF8StringHashEntry writeString;
+extern UTF8StringHashEntry flushString;
+extern UTF8StringHashEntry readString;
+extern UTF8StringHashEntry closeString;
+
+extern UTF8StringHashEntry aJavaLangStringVType;
+extern UTF8StringHashEntry javaLangClassType;
+extern UTF8StringHashEntry vType;
+extern UTF8StringHashEntry iType;
+extern UTF8StringHashEntry cType;
+extern UTF8StringHashEntry bType;
+extern UTF8StringHashEntry sType;
+extern UTF8StringHashEntry zType;
+extern UTF8StringHashEntry jType;
+extern UTF8StringHashEntry iiType;
+extern UTF8StringHashEntry jjType;
+extern UTF8StringHashEntry ivType;
+extern UTF8StringHashEntry jvType;
+extern UTF8StringHashEntry jivType;
+extern UTF8StringHashEntry icType;
+extern UTF8StringHashEntry iiiType;
+extern UTF8StringHashEntry jjjType;
+extern UTF8StringHashEntry abiivType;
+extern UTF8StringHashEntry abvType;
+extern UTF8StringHashEntry iJavaLangObjectType;
+extern UTF8StringHashEntry javaLangObjectZType;
+extern UTF8StringHashEntry javaLangClassZType;
+extern UTF8StringHashEntry javaLangStringType;
+extern UTF8StringHashEntry javaLangThreadType;
+extern UTF8StringHashEntry javaLangObjectType;
+extern UTF8StringHashEntry javaLangStringJavaLangClassType;
+extern UTF8StringHashEntry javaLangStringjavaIoInputStreamType;
+extern UTF8StringHashEntry javaLangObjectIType;
+extern UTF8StringHashEntry javaLangObjectIjavaLangObjectIIVType;
+extern UTF8StringHashEntry javaLangStringjavaLangStringType;
+
+
+void initializeGlobalStrings();
+
+#endif
