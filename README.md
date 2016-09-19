@@ -12,7 +12,7 @@ Capable of running any combination of native and java tasks in tandem.
 * Real-time with low interrupt latency and response
 * Dual-purpose heap for explicit memory allocation and release as well as exact mark-and-sweep garbage collection
 
-### J2ME CLDC java virtual machine brings the Java language to your wireless or embedded platform
+### Java ME CLDC java virtual machine brings the Java language to your wireless or embedded platform
 * Full support for the CLDC virtual machine and class librairies
 * Floating point supported and configurable to the processor's floating point capabilities
 * Advanced threading and process model for a complete separation of java applications into distinct memory spaces
