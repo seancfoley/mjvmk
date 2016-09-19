@@ -1,0 +1,303 @@
+<html>
+<title>Embedded real-time kernel integrating native and java threads</title>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8" />
+<META NAME="TITLE" CONTENT="Embedded real-time kernel integrating native and java threads">
+<META NAME="Keywords" CONTENT="Embedded Kernel, Embedded Operating System, Real time operating system, RTOS, Embedded Software, Embedded System, 
+Embedded Device, Operating system, Embedded, Kernel, Real Time Kernel, Preemptive kernel, preemptive, ROMable, RAM, ROM, EPROM, EEPROM, 
+Scalable, Ports, Microprocessor, Microcontroller, Context Switching, Task Switching, Task scheduling, Thread switching, thread scheduling, 
+java, java micro edition, CLDC, connected limited device configuration, connected device configuration, 
+CDC, Mobile Information Device Profile, MIDP, DoJa, wireless, handset, cell phone, semiconductor, chip, phone, portable">
+<link rel="stylesheet" type="text/css" href="style.css" title="master">
+<link rel="prefetch" href="products.htm">
+<link rel="prefetch" href="specs.htm">
+
+
+
+
+<script>
+var im1 = new Image();
+var im2 = new Image();
+var im3 = new Image();
+var im4 = new Image();
+im1.src = 'home2.gif';
+im2.src = 'prod2.gif';
+im3.src = 'spec2.gif';
+im4.src = 'summary2.gif';
+
+
+
+function switchIm(im, newSrc) {
+	if(document.images != null)
+		im.src=newSrc;
+}
+
+</script>
+
+
+<body bgcolor=#ebeaf0 topmargin=0 leftmargin=0 marginwidth=0 marginheight=0>
+
+<!-- div id=logo-->
+<!-- img src=logo3.gif-->
+<!-- /div-->
+
+
+<table border=0 cellspacing=0 cellpadding=0 cols=4 rows=5 width=822>
+
+<tr><td height=30 width=200 bgcolor=#ffffff valign=top align=right><img src=topleft3.gif></td>
+
+<td bgcolor=#000000 width=526><img src=menul2.gif><a border=0 href="index.html" onMouseOver="switchIm(homeIm1, 'home2.gif');" onMouseOut="switchIm(homeIm1, 'home1.gif');"><img name=homeIm1 src=home1.gif border=0></a><a border=0 href="home.htm" onMouseOver="switchIm(summaryIm1, 'summary2.gif');" onMouseOut="switchIm(summaryIm1, 'summary1.gif');"><img name=summaryIm1 src=summary1.gif border=0></a><a border=0 href="details.htm" onMouseOver="switchIm(productIm1, 'prod2.gif');" onMouseOut="switchIm(productIm1, 'product1.gif');"><img src=product1.gif name=productIm1 border=0></a><a border=0 href="specs.htm" onMouseOver="switchIm(specsIm1, 'spec2.gif');" onMouseOut="switchIm(specsIm1, 'specs1.gif');"><img src=specs1.gif name=specsIm1 border=0></a><img src=menur2.gif></td>
+
+<td width=46 bgcolor=#000000 valign=top>&nbsp;</td>
+<td width=50 rowspan=5 bgcolor=#dbdae0>&nbsp;</td>
+</tr>
+
+
+<tr>
+<td width=200 height=20 bgcolor=#ffffff align=left><spacer type=block width=1></td>
+<td width=526 bgcolor=#ffffff align=left><spacer type=block width=1></td>
+<td width=46 bgcolor=#000000 valign=top><img border=0 src=tittopr6.gif></td>
+</tr>
+
+<tr>
+<!--XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX-->
+<!-- if extending the page length, increase as appropriate-->
+<!--XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX-->
+<td height=1900 bgcolor=#ffffff colspan=3>&nbsp;</td></tr>
+
+<tr><td height=220 bgcolor=#ffffff colspan=3>&nbsp;</td></tr>
+
+<tr>
+<td colspan=3 align=center bgcolor=#dbdae0>
+</td>
+</tr>
+</table>
+<br>
+
+
+
+
+
+
+
+<div id="leftNavBarProducts">
+<!------ left side navigation bar -------->
+
+<table rows=5 cols=1 cellpadding=0 cellspacing=0 border=0>
+
+<tr><td width=101><img src=bmenut5.gif name=topLowIm></td></tr>
+
+<tr><td align=center bgcolor=#000000 valign=top>
+<table width=81 rows=1 cols=4 cellpadding=0 cellspacing=0 border=0>
+<tr>
+<td width=1 bgcolor=#f4f400><spacer type=block width=1></td>
+<td width=78>
+<a href="index.html" onMouseOver="switchIm(homeIm2, 'home2.gif');" onMouseOut="switchIm(homeIm2, 'home1.gif');"><img border=0 name=homeIm2 src=home1.gif></a><br>
+<a href="home.htm" onMouseOver="switchIm(sumaryIm2, 'summary2.gif');" onMouseOut="switchIm(summaryIm2, 'summary1.gif');"><img border=0 name=summaryIm2 src=summary1.gif></a><br>
+<a href="details.htm" onMouseOver="switchIm(productIm2, 'prod2.gif');" onMouseOut="switchIm(productIm2, 'product1.gif');"><img src=product1.gif name=productIm2 border=0></a><br>
+<a href="specs.htm" onMouseOver="switchIm(specsIm2, 'spec2.gif');" onMouseOut="switchIm(specsIm2, 'specs1.gif');"><img src=specs1.gif name=specsIm2 border=0></a><br>
+</td>
+<td width=2 bgcolor=#f4f400><spacer type=block width=2></td>
+</tr>
+</table>
+</td></tr>
+
+<tr><td bgcolor=#000000><img src=bmenub5.gif name=bottomLowIm></td></tr>
+
+<tr><td bgcolor=#000000>
+<p>&nbsp;</p>
+
+</td></tr>
+<!--XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX-->
+<!-- if extending the page length, increase as appropriate-->
+<!--XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX-->
+<tr><td height=500 bgcolor=#dbdae0>
+&nbsp;
+</td></tr>
+
+</table>
+
+<!------ end left side navigation bar -------->
+</div>
+
+
+
+
+
+
+<!------ beginning of content ---------------->
+
+<div id=content>
+
+<table rows=3 cols=4 cellspacing=0 cellpadding=0 border=0 width=772>
+
+<tr>
+<td width=112 height=0><!--extend this height to 80 to include the logo, while decreasing the height below by the same margin, and use the third column in this row for content--></td>
+<td width=70 height=0></td>
+<!--td width=474 height=0-->
+<td width=530 height=0></td>
+<td width=60 height=0></td>
+</tr>
+
+<tr>
+<!-- if extending the page length, increase the height below by the required number of pixels-->
+<td width=112 height=510>&nbsp;</td>
+<td width=600 colspan=2 valign=top>
+<!--XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX-->
+<!--upper content starts here-->
+<!--XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX-->
+<a name=OS>
+<span class=text1><p>
+Micro JVM Kernel
+</span></p>
+
+<p><span class=text2>
+Preemptive Real-time O/S
+</span></p>
+<span class=text>
+<p>
+MJVMK is a lightweight multi-tasking real-time micro kernel for embedded platforms.  It has an optional add-on which is a java micro-edition CLDC virtual machine.
+  MJVMK has a very small footprint.
+</p>
+<p>
+Any combination of native and java applications can be executed by the system, allowing system-critical tasks to be written in native code if required, running seamlessly with generically written java-based tasks.
+</p><p>
+The programming of the micro-operating system can more easily be changed through the use of the JVM.  
+</p>
+
+<span class=text2><p>
+Characteristics
+</p></span>
+
+<p>
+The MJVMK is small, efficient and fully self contained, easily portable to an embedded system.
+</p>
+
+<p>
+The operating system possesses a dual-purpose heap, one that allows for explicit memory release as well as exact garbage collection.  Semaphores provide mutual exlusion and synchronization.  Monitors with conditional variables provide for mutual exclusion, synchronization, and wait lists with notification and timeouts.  Priority-based scheduling and weighted time-sharing allow for explicit control of processor use and interrupt handling.  The kernel is flexibly designed for the addition of required interrupt drivers.  Threads/tasks may be run at 64 different priorities, with any number of threads running at a specific priority, and with tasks at specific priorities garnering a configurable and variable amount of CPU time with respect to the other tasks at the same priority.
+
+</p>
+<span class=text2><p>
+Java Capability
+</p></span>
+<span class=text>
+<p>
+With the CLDC java virtual machine, MJVMK can run java byte-code on an embedded microprocessor, since the operating system provides all the support required for the Java language, such as the java threading model and garbage collection.  The JVM is fine-tuned for embedded platforms by providing such features as a process model (multiple applications in the same virtual machine with entirely separate memory spaces), Java stacks that are optionally fixed-length or growable, romizing support and other performance optimizations.
+</p>
+</span>
+<span class=text>
+<p>
+<a href=specs.htm>Further details regarding java support</a>
+</p></span>
+<span class=text2>
+<p>
+Several Possible Configurations
+</p></span>
+<span class=text>
+<p>
+Even when running the java virtual machine, tasks running on the O/S may run inside the kernel, entirely separate from the virtual machine, making use of the kernel's API for synchronization, thread management, memory management and other functions.  Alternatively, applications may be written in java, making use of the CLDC API.  The two application models may be mixed as desired for optimal use of the platform's resources.
+</p>
+</span>
+<p>
+<br>
+<img src=config.jpg>
+</p>
+<span class=text><p>
+<center><b>A typical configuration for MJVMK</b></center>
+</p></span>
+<span class=text>
+<p>
+The JVM has an additional built-in scheduler that allows it to run on top of an existing operating system much like a standard JVM.  This can be especially useful for debugging purposes.
+</p>
+<p>
+</span>
+</span>
+
+<a name="OSSize"/>
+<span class=text2>
+Small Size
+</span></p><span class=text>
+<p>
+The system has been designed to be extremely compact. 
+</p><p>
+The system has been ported to the protected mode of the Intel x86 compatible group of processors and tested on PCs running the AMD-K6-2 processor and the Intel Pentium processor.  The total size of this build with all OS and VM features listed in the description and specification can be broken down as follows:<br><br>
+Operating system internals (boot-up, initialization, kernel, heap, other): 45 KB<br>
+CLDC VM internals: 80 KB<br>
+CLDC VM class files (non-compressed): 99 KB<br>
+<b>Total size: 224 KB</b><br><br>
+Removing unwanted features can further reduce the size of such a build.
+</p>
+
+<span class=text2><p>
+Requirements for a Port
+</p></span><p>
+MJVMK is written in highly portable ANSI C.  All processor-specific source code listed below is grouped to make porting as straightforward as possible.  No external libraries are required.  
+</p><p>
+The interface to the java CLDC virtual machine is written in Java and can be compiled with any standard Java compiler.
+</p><p>
+A port of the system requires:<br><br>
+&#149; A C compiler that generates reentrant code - code that can be executed by more than one task/thread without fear of corruption<br>
+&#149; Interrupts can be explicitly enabled and disabled<br>
+&#149; The processor has a clock tick interrupt that occurs at regular intervals<br>
+&#149; The processor supports a hardware stack that can accommodate numerous stack frames<br>
+&#149; The processor has instructions that allow for loading and storing the stack pointer and other thread-specific CPU registers<br>
+</p>
+
+
+<p>
+The following limited amount of code must be written to complete a port to a specific processor:<br><br>
+&#149; Any platform specific initialization<br>
+&#149; Configuring the tick interrupt and the tick rate<br>
+&#149; A register swap function for thread switches<br>
+&#149; The java standard output and standard error streams (optional but recommended)<br>
+</p>
+<p>
+For the x86 protected mode port, the above consisted of:<br><br>
+&#149; An x86 boot-loader<br>
+&#149; About 300 lines of code for CPU initialization which included enabling address line 20, starting the protected mode, initializing the heap and stack, and initializing the interrupt table<br>
+&#149; About 100 additional lines of code for the streams, clock tick and context switching, comprising approximately 4 percent of the compiled operating system<br>
+</p>
+
+
+
+</span>
+<!--XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX-->
+<!--upper content ends here-->
+<!--XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX-->
+</td>
+
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>&nbsp;<!--lower navigation bar goes here--></td>
+<td>&nbsp;</td>
+<td valign=top>
+<!--XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX-->
+<!--lower content starts here-->
+<!--XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX-->
+<span class=text>
+<br>
+<br>
+
+
+
+
+
+
+
+
+</span>
+<!--XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX-->
+<!--lower content ends here-->
+<!--XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX-->
+<td>&nbsp;</td>
+</tr></table>
+
+
+</div>
+
+<!------ end of content ---------------->
+
+</body>
+</html>

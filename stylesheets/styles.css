@@ -158,7 +158,7 @@ img {
 }
 
 header {
-  width:270px;
+  width:200px;
   float:left;
   position:fixed;
   -webkit-font-smoothing:subpixel-antialiased;
@@ -171,11 +171,11 @@ header ul {
   background: #f4f4f4;
   border-radius:5px;
   border:1px solid #e0e0e0;
-  width:270px;
+  width:200px;
 }
 
 header li {
-  width:89px;
+  width:100px;
   float:left;
   border-right:1px solid #e0e0e0;
   height:40px;
@@ -212,9 +212,9 @@ strong {
   font-weight:700;
 }
 
-header ul li + li + li {
+header ul li + li  {
   border-right:none;
-  width:89px;
+  width:98px;
 }
 
 header ul a strong {
@@ -224,7 +224,7 @@ header ul a strong {
 }
 
 section {
-  width:500px;
+  width:600px;
   float:right;
   padding-bottom:50px;
 }
