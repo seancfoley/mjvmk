@@ -12,14 +12,14 @@ semaphoreStruct sem = {2, NULL};
 void printSemStatement()
 {
     char str[500];
-    stringPrintf(str, "%x is in semaphore\n", getCurrentThread());
+    stringPrintf((str, "%p is in semaphore\n", getCurrentThread()));
     psPrintOut(str);   
 }
 
 void printSemStatement2()
 {
     char str[500];
-    stringPrintf(str, "%x is out of semaphore\n", getCurrentThread());
+    stringPrintf((str, "%p is out of semaphore\n", getCurrentThread()));
     psPrintOut(str);   
 }
 

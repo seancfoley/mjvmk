@@ -95,8 +95,8 @@ Global
 		{599435CA-355D-496E-BF6A-D0B2D1AC5DC5}.Romize Release|x86.Build.0 = Romize Release|Win32
 		{599435CA-355D-496E-BF6A-D0B2D1AC5DC5}.Template|x86.ActiveCfg = Template|Win32
 		{599435CA-355D-496E-BF6A-D0B2D1AC5DC5}.Template|x86.Build.0 = Template|Win32
-		{599435CA-355D-496E-BF6A-D0B2D1AC5DC5}.x86 Release|x86.ActiveCfg = Template|Win32
-		{599435CA-355D-496E-BF6A-D0B2D1AC5DC5}.x86 Release|x86.Build.0 = Template|Win32
+		{599435CA-355D-496E-BF6A-D0B2D1AC5DC5}.x86 Release|x86.ActiveCfg = Romize Release|Win32
+		{599435CA-355D-496E-BF6A-D0B2D1AC5DC5}.x86 Release|x86.Build.0 = Romize Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

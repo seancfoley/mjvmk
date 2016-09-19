@@ -187,7 +187,7 @@
       <Optimization>MaxSpeed</Optimization>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>d:\projects\mjvmk\lib\src\ps\x86;d:\projects\mjvmk\jvm\src\elements\x86;d:\projects\mjvmk\lib\src\ps;d:\projects\mjvmk\jvm\src;d:\projects\mjvmk\lib\src;d:\projects\mjvmk\lib\src\ps\win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\lib\src\ps\x86;$(SolutionDir)\jvm\src\elements\x86;$(SolutionDir)\lib\src\ps;$(SolutionDir)\jvm\src;$(SolutionDir)\lib\src;$(SolutionDir)\lib\src\ps\win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AssemblerListingLocation>.\out\x86\</AssemblerListingLocation>
       <PrecompiledHeaderOutputFile>.\out\x86\jvm.pch</PrecompiledHeaderOutputFile>

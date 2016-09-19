@@ -11,7 +11,7 @@ typedef FIRST_PASS_CONSTANT_POOL_ENTRY FIRST_PASS_CONSTANT_POOL;
 
 typedef struct preloadDataStruct preloadDataStruct, *PRELOAD_DATA;
 
-typedef struct preloadDataStruct {
+struct preloadDataStruct {
     classIdentifierStruct classID;
     classIdentifierStruct superClassID;
     PRELOAD_DATA pChildLoad;

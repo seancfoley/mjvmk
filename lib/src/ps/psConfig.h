@@ -24,7 +24,7 @@
 #define memorySet(x, y, z) memset(x, y, z)
 #define stringLength(x) ((UINT16) strlen(x))
 #define stringChar(x, y) strchr(x, y)
-#define stringPrintf(x) sprintf x
+#define stringPrintf(x) sprintf
 #define integerToString(x, y, z) _itoa(x, y, z)
 #define structOffsetOf(x, y) offsetof(x, y)
 #define setJump(x) setjmp(x)

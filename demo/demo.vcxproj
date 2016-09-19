@@ -64,7 +64,7 @@
       <OutputFile>.\out\x86\demo.dll</OutputFile>
       <AdditionalOptions> /FIXED</AdditionalOptions>
       <BaseAddress>0x00000000</BaseAddress>
-      <AdditionalDependencies>..\lib\out\x86\psEntry.obj;..\lib\out\x86\psCpu.obj;..\lib\out\x86\lib.lib;..\jvm\out\x86\jvm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>..\lib\out\x86\psEntry.obj;..\lib\out\x86\psCpu.obj;..\lib\out\x86\lib.lib;..\jvm\out\x86\jvm.lib;vcruntime.lib;legacy_stdio_definitions.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <EntryPointSymbol>start</EntryPointSymbol>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
