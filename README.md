@@ -1,6 +1,8 @@
 # mjvmk
 The Micro Java Virtual Machine Kernel is a portable preemptive real-time kernel with an integrated CLDC java virtual machine designed for embedded systems
 
+[View Project Page](https://seancfoley.github.io/mjvmk/)
+
 Provides a full-fledged java development environment for your real-time embedded system. 
 Capable of running any combination of native and java tasks in tandem. 
 
