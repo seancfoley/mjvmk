@@ -22,3 +22,7 @@ Capable of running any combination of native and java tasks in tandem.
 * Built in romizing support
 * Fully self contained, no additional libraries required
 * A second java thread scheduler enables JVM to be run on an existing O/S
+
+### Platforms
+* Written in portable code for all platforms and targeted for embedded
+* Developed in Visual Studio on Windows, you can import it into your Visual Studio environment
