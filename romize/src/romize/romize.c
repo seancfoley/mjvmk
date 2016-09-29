@@ -100,7 +100,7 @@ int main(int argc, char *argv[])
     FILE *pInputTextFile;
     FILE *pOutputSourceFile;
     UINT16 fileNameLen;
-    char fileNameBuffer[MAX_FILE_NAME_LEN];
+	char fileNameBuffer[MAX_FILE_NAME_LEN];
     char *classpath;
     int currentArg;
     
@@ -187,7 +187,7 @@ int main(int argc, char *argv[])
         if(fgets(fileNameBuffer, MAX_FILE_NAME_LEN, pInputTextFile) == NULL) {
             break;
         }
-        fileNameLen = strlen(fileNameBuffer);
+        fileNameLen = (UINT16) strlen(fileNameBuffer);
         while(fileNameLen > 0 && fileNameBuffer[fileNameLen - 1] == '\n' || fileNameBuffer[fileNameLen - 1] == '\r') {
             fileNameBuffer[fileNameLen - 1] = '\0';
             fileNameLen--;

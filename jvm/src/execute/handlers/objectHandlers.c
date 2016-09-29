@@ -31,7 +31,7 @@ START_INSTRUCTION_HANDLER(NEW)
     }
 
 #if QUICKENING_ENABLED
-    quickenInstructionStream3X2(getPC(), NEW_QUICK, (UINT8) index);  
+    quickenInstructionStream3X2(getPC(), NEW_QUICK, index);  
 #endif
     goto createObject;
 END_HANDLER

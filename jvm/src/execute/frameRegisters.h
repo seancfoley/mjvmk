@@ -203,10 +203,10 @@
 #define instructionSet1(pc, newInstruction)                                     (pc)[0] = (newInstruction)
 #define instructionSet2(pc, newInstruction, arg1)                               {(pc)[1] = (arg1); instructionSet1(pc, newInstruction);}
 #define instructionSet3(pc, newInstruction, arg1, arg2)                         {(pc)[2] = (arg2);  instructionSet2(pc, newInstruction, arg1);}
-#define instructionSet3X2(pc, newInstruction, arg1)                             {(pc)[1] = ((arg1) >> 16); (pc)[2] = (byte) (arg1); instructionSet1(pc, newInstruction);}
+#define instructionSet3X2(pc, newInstruction, arg1)                             {(pc)[1] = ((arg1) >> 8); (pc)[2] = (byte) (arg1); instructionSet1(pc, newInstruction);}
 #define instructionSet4(pc, newInstruction, arg1, arg2, arg3)                   {(pc)[3] = (arg3);  instructionSet3(pc, newInstruction, arg1, arg2);}
 #define instructionSet5(pc, newInstruction, arg1, arg2, arg3, arg4)             {(pc)[4] = (arg4);  instructionSet4(pc, newInstruction, arg1, arg2, arg3);}
-#define instructionSet5X2X2(pc, newInstruction, arg1, arg2)                     {(pc)[3] = ((arg2) >> 16); (pc)[4] = (byte) (arg2); instructionSet3X2(pc, newInstruction, arg1);}
+#define instructionSet5X2X2(pc, newInstruction, arg1, arg2)                     {(pc)[3] = ((arg2) >> 8); (pc)[4] = (byte) (arg2); instructionSet3X2(pc, newInstruction, arg1);}
 
 #define atomicInstructionSet1(pc, newInstruction)                               {enterCritical(); instructionSet1(pc, newInstruction); exitCritical();}
 #define atomicInstructionSet2(pc, newInstruction, arg1)                         {enterCritical(); instructionSet2(pc, newInstruction, arg1); exitCritical();}

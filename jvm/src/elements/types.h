@@ -104,7 +104,7 @@ jlong jlongRemainder(jlong, jlong);
 
 
 /* long/time conversions */
-#define setTimeMillis(pTime, longMillis)                (((TIME_VALUE) (pTime))->milliseconds = (longMillis).low + ((longMillis).high << 32))
+#define setTimeMillis(pTime, longMillis)                (((TIME_VALUE) (pTime))->milliseconds = (longMillis).low + (((UINT64) (longMillis).high) << 32))
 #define setTimeMillisNanos(pTime, longMillis, intNanos) (((TIME_VALUE) (pTime))->milliseconds = (longMillis).low + (((UINT64) (longMillis).high) << 32) + (((intNanos) + 999) / 1000))
 #define getTime(longMillis, pTime)                      {(longMillis).high = (UINT32) ((pTime)->milliseconds >> 32); (longMillis).low = (UINT32) ((TIME_VALUE) (pTime))->milliseconds;}
 
