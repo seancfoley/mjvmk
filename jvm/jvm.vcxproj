@@ -17,10 +17,6 @@
       <Configuration>Romize Release</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="Template|Win32">
-      <Configuration>Template</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
     <ProjectConfiguration Include="x86 Release|Win32">
       <Configuration>x86 Release</Configuration>
       <Platform>Win32</Platform>
@@ -32,10 +28,6 @@
     <ProjectGuid>{5C0401A1-7CF7-43D6-938D-3A6A1BC6A9A1}</ProjectGuid>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Template|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v140</PlatformToolset>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Romize Release|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <PlatformToolset>v140</PlatformToolset>
@@ -68,9 +60,6 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
-  </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Template|Win32'">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Romize Release|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -128,7 +117,7 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <WarningLevel>Level3</WarningLevel>
       <AdditionalIncludeDirectories>$(SolutionDir)\jvm\src\elements\win32;$(SolutionDir)\lib\src\ps;$(SolutionDir)\jvm\src;$(SolutionDir)\lib\src;$(SolutionDir)\lib\src\ps\win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AssemblerListingLocation>.\out\Release\</AssemblerListingLocation>
       <PrecompiledHeaderOutputFile>.\out\Release\jvm.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>.\out\Release\</ObjectFileName>
@@ -158,7 +147,7 @@
       <MinimalRebuild>true</MinimalRebuild>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <AdditionalIncludeDirectories>$(SolutionDir)\jvm\src\elements\win32;$(SolutionDir)\lib\src\ps;$(SolutionDir)\jvm\src;$(SolutionDir)\lib\src;$(SolutionDir)\lib\src\ps\win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AssemblerListingLocation>.\out\Debug\</AssemblerListingLocation>
       <PrecompiledHeaderOutputFile>.\out\Debug\jvm.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>.\out\Debug\</ObjectFileName>
@@ -188,7 +177,7 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <WarningLevel>Level3</WarningLevel>
       <AdditionalIncludeDirectories>$(SolutionDir)\lib\src\ps\x86;$(SolutionDir)\jvm\src\elements\x86;$(SolutionDir)\lib\src\ps;$(SolutionDir)\jvm\src;$(SolutionDir)\lib\src;$(SolutionDir)\lib\src\ps\win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AssemblerListingLocation>.\out\x86\</AssemblerListingLocation>
       <PrecompiledHeaderOutputFile>.\out\x86\jvm.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>.\out\x86\</ObjectFileName>
@@ -206,6 +195,9 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <OutputFile>.\out\x86\jvm.lib</OutputFile>
     </Lib>
+    <PreBuildEvent>
+      <Command>$(SolutionDir)buildAsm.bat</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Romize Debug|Win32'">
     <ClCompile>
@@ -218,7 +210,7 @@
       <MinimalRebuild>true</MinimalRebuild>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <AdditionalIncludeDirectories>$(SolutionDir)\jvm\src\elements\win32Romize;$(SolutionDir)\lib\src\ps;$(SolutionDir)\jvm\src;$(SolutionDir)\lib\src;$(SolutionDir)\lib\src\ps\win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AssemblerListingLocation>.\out\Romize_Debug\</AssemblerListingLocation>
       <PrecompiledHeaderOutputFile>.\out\Romize_Debug\jvm.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>.\out\Romize_Debug\</ObjectFileName>
@@ -248,7 +240,7 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <WarningLevel>Level3</WarningLevel>
       <AdditionalIncludeDirectories>$(SolutionDir)\jvm\src\elements\win32Romize;$(SolutionDir)\lib\src\ps;$(SolutionDir)\jvm\src;$(SolutionDir)\lib\src;$(SolutionDir)\lib\src\ps\win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AssemblerListingLocation>.\out\Romize_Release\</AssemblerListingLocation>
       <PrecompiledHeaderOutputFile>.\out\Romize_Release\jvm.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>.\out\Romize_Release\</ObjectFileName>
