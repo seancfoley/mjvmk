@@ -404,10 +404,10 @@ static RETURN_CODE iterativeLoadArrayClass(CLASS_ID pClassID, UINT16 dimensions,
 {
     const char *name = pClassID->name;
     RETURN_CODE elementClassStatus;
-    COMMON_CLASS_DEF pElementClassDef;
+    COMMON_CLASS_DEF pElementClassDef = NULL;
     ARRAY_CLASS_DEF pClassDef;
     BOOLEAN isPrimitiveElementClass;
-    ARRAY_TYPE primitiveType;
+    ARRAY_TYPE primitiveType = BOOLEAN_ARRAY_TYPE;
     CLASS_ENTRY pClassEntry;
     UINT16 currentDimension = 1;
     NamePackage arrayNamePackage = pClassID->key;  /* ANSI union assignment */
@@ -441,7 +441,7 @@ static RETURN_CODE iterativeLoadArrayClass(CLASS_ID pClassID, UINT16 dimensions,
     else { /* load the element type of the array */
 
         isPrimitiveElementClass = FALSE;
-        
+		 
         /* set the array depth to 0 in the key */
         pClassID->key.np.packageKey = addArrayDepthToPackageKey(getPackageStringKey(arrayNamePackage.np.packageKey), 0); 
         
