@@ -25,4 +25,5 @@ Capable of running any combination of native and java tasks in tandem.
 
 ### Platforms
 * Written in portable code for all platforms and targeted for embedded
-* Developed in Visual Studio on Windows, you can import it into your Visual Studio environment
+* Code that would need to be ported for each platform (such as interrupts) are separated
+* Developed in Visual Studio on Windows, you can easily import it into your Visual Studio environment
