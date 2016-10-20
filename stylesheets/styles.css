@@ -217,6 +217,10 @@ header ul li + li  {
   width:98px;
 }
 
+header ul.singleli {
+  width:100px;
+}
+
 header ul a strong {
   font-size:14px;
   display:block;
@@ -276,10 +280,16 @@ footer {
     display:inline;
   }
 
-  header ul {
+  header ul.doubleli {
     position:absolute;
     right:50px;
     top:52px;
+  }
+  
+  header ul.singleli {
+    position:absolute;
+    right:50px;
+    top:112px;
   }
 }
 
@@ -292,7 +302,11 @@ footer {
     padding:0;
   }
 
-  header ul, header p.view {
+  header ul.doubleli, header p.view {
+    position:static;
+  }
+  
+  header ul.singleli, header p.view {
     position:static;
   }
 
@@ -306,12 +320,8 @@ footer {
     padding:15px;
   }
 
-  header ul {
-    width:99%;
-  }
-
-  header li, header ul li + li + li {
-    width:33%;
+  header li.singleli, header ul li + li {
+    width:49%;
   }
 }
 
